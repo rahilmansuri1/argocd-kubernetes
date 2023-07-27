@@ -21,7 +21,7 @@ spec:
         - start-node
         env:
         - name: CONFIG_PATH
-          value: config.yaml
+          value: /home/eth_storage/config.yaml  # Corrected the path inside the container
         ports:
         - containerPort: 13001
           protocol: TCP
@@ -30,13 +30,13 @@ spec:
         volumeMounts:
         - name: config-volume
           mountPath: /home/eth_storage/
-          subPath: config.yaml
+          subPath: config.yaml  # Corrected the subPath
         - name: data-volume
           mountPath: /data
       volumes:
       - name: config-volume
         hostPath:
-          path: /home/eth_storage/
+          path: /home/eth_storage/config.yaml  # Corrected the path on the host machine
       - name: data-volume
         hostPath:
           path: /home/eth_storage/
