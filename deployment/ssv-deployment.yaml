@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ssv-node-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ssv-node
+  template:
+    metadata:
+      labels:
+        app: ssv-node
+    spec:
+      containers:
+      - name: ssv-node
+        image: bloxstaking/ssv-node:latest
+        args:
+        - make
+        - BUILD_PATH=/go/bin/ssvnode
+        - start-node
+        env:
+        - name: CONFIG_PATH
+          value: /config.yaml
+        ports:
+        - containerPort: 13001
+          protocol: TCP
+        - containerPort: 12001
+          protocol: UDP
+        volumeMounts:
+        - name: config-volume
+          mountPath: /config.yaml
+          subPath: config.yaml
+        - name: data-volume
+          mountPath: /data
+      volumes:
+      - name: config-volume
+        hostPath:
+          path: /home/eth_storage/config.yaml
+      - name: data-volume
+        hostPath:
+          path: /home/eth_storage/
