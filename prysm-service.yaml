@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: prysm-service
+spec:
+  selector:
+     app: prysmbeacon
+  ports:
+    - protocol: TCP
+      name: beacon-tcp
+      port: 4000
+      targetPort: 4000
+    - protocol: TCP
+      name: beacon2-tcp
+      port: 13000
+      targetPort: 13000
+    - protocol: TCP
+      name: beacon-udp
+      port: 12000
+      targetPort: 12000
