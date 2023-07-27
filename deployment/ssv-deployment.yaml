@@ -18,25 +18,26 @@ spec:
         args:
         - make
         - BUILD_PATH=/go/bin/ssvnode
+        - /home/eth_storage/config.yaml:/config.yaml
         - start-node
-        env:
-        - name: CONFIG_PATH
-          value: /config.yaml
+        # env:
+        # - name: CONFIG_PATH
+        #   value: /config.yaml
         ports:
         - containerPort: 13001
           protocol: TCP
         - containerPort: 12001
           protocol: UDP
         volumeMounts:
-        - name: config-volume
-          mountPath: /home/eth_storage/
-          subPath: config.yaml
+        # - name: config-volume
+        #   mountPath: /home/eth_storage/
+        #   subPath: config.yaml
         - name: data-volume
           mountPath: /data
       volumes:
-      - name: config-volume
-        hostPath:
-          path: /home/eth_storage/
+      # - name: config-volume
+      #   hostPath:
+      #     path: /home/eth_storage/
       - name: data-volume
         hostPath:
           path: /home/eth_storage/
