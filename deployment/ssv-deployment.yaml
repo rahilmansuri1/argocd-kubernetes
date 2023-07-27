@@ -21,7 +21,7 @@ spec:
         - start-node
         env:
         - name: CONFIG_PATH
-          value: /home/eth_storage/config.yaml  # Corrected the path inside the container
+          value: /etc/config/config.yaml  # Update the path inside the container
         ports:
         - containerPort: 13001
           protocol: TCP
@@ -29,14 +29,13 @@ spec:
           protocol: UDP
         volumeMounts:
         - name: config-volume
-          mountPath: /home/eth_storage/
-          subPath: config.yaml  # Corrected the subPath
+          mountPath: /etc/config  # Update the mount path inside the container
         - name: data-volume
           mountPath: /data
       volumes:
       - name: config-volume
-        hostPath:
-          path: /home/eth_storage/config.yaml  # Corrected the path on the host machine
+        configMap:
+          name: ssv-config  # Use the ConfigMap we created earlier
       - name: data-volume
         hostPath:
           path: /home/eth_storage/
