@@ -29,14 +29,14 @@ spec:
           protocol: UDP
         volumeMounts:
         - name: config-volume
-          mountPath: /home/eth_storage/config.yaml
+          mountPath: /config.yaml
           subPath: config.yaml
         - name: data-volume
-          mountPath: /home/eth_storage/
+          mountPath: /data
       volumes:
       - name: config-volume
         hostPath:
-          path: /home/eth_storage/config.yaml
+          path: /home/eth_storage/
       - name: data-volume
         hostPath:
           path: /home/eth_storage/
