@@ -29,7 +29,7 @@ spec:
           protocol: UDP
         volumeMounts:
         - name: config-volume
-          mountPath: /config.yaml
+          mountPath: /
           subPath: config.yaml
         - name: data-volume
           mountPath: /data
