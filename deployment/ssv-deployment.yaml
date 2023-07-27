@@ -21,7 +21,7 @@ spec:
         - start-node
         env:
         - name: CONFIG_PATH
-          value: /config.yaml
+          value: config.yaml
         ports:
         - containerPort: 13001
           protocol: TCP
