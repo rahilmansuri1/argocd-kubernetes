@@ -36,7 +36,7 @@ spec:
         - --goerli
         - --checkpoint-sync-url=https://goerli.beaconstate.info/
         - --genesis-beacon-api-url=https://goerli.beaconstate.info/
-        - --execution-endpoint=http://192.168.49.2:32101   # Added the execution endpoint argument
+        - --execution-endpoint=http://192.168.49.2:32111   # Added the execution endpoint argument
         - --jwt-secret=/home/eth_storage/jwtsecret
 
       volumes:
