@@ -18,7 +18,8 @@ spec:
         args:
         - make
         - BUILD_PATH=/go/bin/ssvnode
-        - /home/eth_storage/config.yaml:/config.yaml
+        - /home/eth_storage/config.yaml
+        - :/config.yaml
         - start-node
         # env:
         # - name: CONFIG_PATH
