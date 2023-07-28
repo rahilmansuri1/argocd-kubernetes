@@ -38,5 +38,5 @@ spec:
       name: geth-rpc
       port: 8551
       targetPort: 8551
-      nodePort: 32111
-  type: NodePort
+  #     nodePort: 32111
+  # type: NodePort
