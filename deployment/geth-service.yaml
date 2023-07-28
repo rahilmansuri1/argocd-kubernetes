@@ -39,4 +39,4 @@ spec:
       port: 8551
       targetPort: 8551
       # nodePort: 32111
-  type: NodePort
+  # type: NodePort
