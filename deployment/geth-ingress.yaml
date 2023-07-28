@@ -14,7 +14,7 @@ spec:
               service:
                 name: geth-service
                 port:
-                  number: 32111
+                  number: 8551
 
 
 
