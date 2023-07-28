@@ -1,14 +1,41 @@
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: geth-ingress
+#   namespace: ethereum
+# spec:
+#   rules:
+#     - host: eth.ssv.com  # Replace 'your.domain.com' with your actual domain name
+#       http:
+#         paths:
+#           - path: /geth  # This is the path that will be routed to your NodePort Service
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: geth-service
+#                 port:
+#                   number: 8551
+
+
+
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: geth-ingress
-  namespace: ethereum
+  namespace: ethereum 
 spec:
   rules:
-    - host: eth.ssv.com  # Replace 'your.domain.com' with your actual domain name
+    - host: eth.ssv.com 
       http:
         paths:
-          - path: /geth  # This is the path that will be routed to your NodePort Service
+          - path: /rpc
+            pathType: Prefix
+            backend:
+              service:
+                name: geth-service
+                port:
+                  number: 8545
+          - path: /geth
             pathType: Prefix
             backend:
               service:
