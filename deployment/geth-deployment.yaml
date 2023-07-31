@@ -116,6 +116,8 @@ spec:
           - 0.0.0.0
           - --ws.addr
           - 0.0.0.0
+          - --ws.port
+          - 8546
           - --authrpc.addr 
           - 0.0.0.0 
           - --authrpc.port=8551
