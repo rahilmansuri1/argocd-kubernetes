@@ -119,8 +119,7 @@ spec:
           - --authrpc.addr 
           - 0.0.0.0 
           - --authrpc.port=8551
-          - --authrpc.vhost
-          - "*"
+          - --authrpc.vhost=*
           - --http
           - --metrics
           - --pprof
