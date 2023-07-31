@@ -50,7 +50,8 @@ spec:
           - 8545
           - --authrpc.addr 
           - 0.0.0.0 
-          - --authrpc.port=8551
+          - --authrpc.port
+          - 8551
           - --http
           - --http.port
           - 8545
