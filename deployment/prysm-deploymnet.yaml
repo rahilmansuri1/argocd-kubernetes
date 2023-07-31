@@ -38,7 +38,7 @@ spec:
         - --grpc-gateway-port=3500
         - --checkpoint-sync-url=https://goerli.beaconstate.info/
         - --genesis-beacon-api-url=https://goerli.beaconstate.info/
-        - --execution-endpoint=http://geth-service.ethereum.svc.cluster.local:8551 # Added the execution endpoint argument
+        - "--execution-endpoint=geth-service:8551"# Added the execution endpoint argument
         - --jwt-secret=/home/eth_storage/jwtsecret
 
       volumes:
