@@ -1,3 +1,73 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: geth-deployment
+#   labels:
+#     app: geth
+# spec:
+#   selector:
+#     matchLabels:
+#       app: geth
+#   replicas: 1
+#   template:
+#     metadata:
+#       labels:
+#         app: geth
+#     spec:
+#       containers:
+#       - name: geth
+#         image: ethereum/client-go:latest
+#         volumeMounts:
+#         - name: eth-storage
+#           mountPath: /home/eth_storage/
+# #        - name: jwt-config
+#  #         mountPath: /secrets/jwtsecret  # Mount the ConfigMap as a volume
+#   #        readOnly: true
+#         ports:
+#         - containerPort: 30303
+#           protocol: UDP
+#         - containerPort: 30303
+#           protocol: TCP
+#         - containerPort: 8545
+#           protocol: TCP
+#         - containerPort: 8546
+#           protocol: TCP
+#         - containerPort: 12000
+#           protocol: TCP
+#         - containerPort: 9100
+#           protocol: TCP
+#         - containerPort: 6060
+#           protocol: TCP  
+#         - containerPort: 8551
+#           protocol: TCP
+#         args:
+#           - --goerli
+#           - --http.addr
+#           - 0.0.0.0
+#           - --ws.addr
+#           - 0.0.0.0
+#           - --ws.port
+#           - 8545
+#           - --authrpc.addr 
+#           - 0.0.0.0 
+#           - --authrpc.port
+#           - 8551
+#           - --http
+#           - --http.port
+#           - 8545
+#           - --metrics
+#           - --pprof
+#           - --datadir
+#           - /home/eth_storage/geth_storage
+#           - --authrpc.jwtsecret   # Add the flag here
+#           - /home/eth_storage/jwtsecret   # Path to the JWT secret file inside the mounted ConfigMap volume
+#       volumes:
+#       - name: eth-storage
+#         hostPath:
+#           path: /home/eth_storage/
+#    #   - name: jwt-config
+#     #    configMap:
+#      #     name: jwt-config
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -20,9 +90,6 @@ spec:
         volumeMounts:
         - name: eth-storage
           mountPath: /home/eth_storage/
-#        - name: jwt-config
- #         mountPath: /secrets/jwtsecret  # Mount the ConfigMap as a volume
-  #        readOnly: true
         ports:
         - containerPort: 30303
           protocol: UDP
@@ -41,30 +108,30 @@ spec:
         - containerPort: 8551
           protocol: TCP
         args:
-          - --goerli
-          - --http.addr
-          - 0.0.0.0
-          - --ws.addr
-          - 0.0.0.0
-          - --ws.port
-          - 8545
-          - --authrpc.addr 
-          - 0.0.0.0 
-          - --authrpc.port
-          - 8551
-          - --http
-          - --http.port
-          - 8545
-          - --metrics
-          - --pprof
-          - --datadir
-          - /home/eth_storage/geth_storage
-          - --authrpc.jwtsecret   # Add the flag here
-          - /home/eth_storage/jwtsecret   # Path to the JWT secret file inside the mounted ConfigMap volume
+          - "--goerli"
+          - "--http.addr"
+          - "0.0.0.0"
+          - "--ws.addr"
+          - "0.0.0.0"
+          - "--ws.port"
+          - "8545"
+          - "--authrpc.addr"
+          - "0.0.0.0"
+          - "--authrpc.port=8551"  # Modified this line to provide the port as a string
+          - "--http"
+          - "--http.port"
+          - "8545"
+          - "--metrics"
+          - "--pprof"
+          - "--datadir"
+          - "/home/eth_storage/geth_storage"
+          - "--authrpc.jwtsecret"
+          - "/home/eth_storage/jwtsecret"
+        volumeMounts:
+        - name: eth-storage
+          hostPath:
+            path: /home/eth_storage/
       volumes:
       - name: eth-storage
         hostPath:
           path: /home/eth_storage/
-   #   - name: jwt-config
-    #    configMap:
-     #     name: jwt-config
