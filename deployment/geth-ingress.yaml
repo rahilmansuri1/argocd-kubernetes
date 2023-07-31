@@ -37,13 +37,13 @@ spec:
                 name: geth-service
                 port:
                   number: 8545
-          - path: /geth
-            pathType: Prefix
-            backend:
-              service:
-                name: geth-service
-                port:
-                  number: 8551
+          # - path: /geth
+          #   pathType: Prefix
+          #   backend:
+          #     service:
+          #       name: geth-service
+          #       port:
+          #         number: 8551
 
 
 
