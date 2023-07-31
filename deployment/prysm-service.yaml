@@ -20,4 +20,5 @@ spec:
       targetPort: 12000
     - protocol: TCP
       name: beaconb
-      protocol: TCP
+      port: 3500
+      targetPort: 3500
