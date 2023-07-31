@@ -29,6 +29,8 @@ spec:
           protocol: TCP
         - containerPort: 4000
           protocol: TCP
+        - containerPort: 3500
+          protocol: TCP
         args:
         - --accept-terms-of-use
         - --datadir=/home/eth_storage
