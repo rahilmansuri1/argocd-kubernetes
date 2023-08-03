@@ -8,7 +8,7 @@ spec:
 
   source:
     repoURL: https://github.com/rahilmansuri1/argocd-kubernetes.git
-    targetRevision: HEAD
+    targetRevision: vault
     path: deployment
   destination: 
     server: https://kubernetes.default.svc
