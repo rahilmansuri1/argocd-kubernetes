@@ -12,6 +12,25 @@ spec:
       labels:
         app: ssv-node
     spec:
+      initContainers:
+      - name: prepare-config
+        image: busybox
+        command: ["/bin/sh", "-c"]
+        args:
+        - |
+          cp /etc/config-orig/config.yaml /etc/config/config.yaml && sed -i 's#OperatorPrivateKey: OperatorPrivateKey#OperatorPrivateKey: '"$OPERATOR_PRIVATE_KEY"'#' /etc/config/config.yaml
+        env:
+        - name: OPERATOR_PRIVATE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: app-secret
+              key: operatorPrivateKey
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/config
+        - name: config-orig-volume
+          mountPath: /etc/config-orig
+
       containers:
       - name: ssv-node
         image: bloxstaking/ssv-node:latest
@@ -21,7 +40,7 @@ spec:
         - start-node
         env:
         - name: CONFIG_PATH
-          value: /etc/config/config.yaml  # Update the path inside the container
+          value: /etc/config/config.yaml
         ports:
         - containerPort: 13001
           protocol: TCP
@@ -29,13 +48,16 @@ spec:
           protocol: UDP
         volumeMounts:
         - name: config-volume
-          mountPath: /etc/config  # Update the mount path inside the container
+          mountPath: /etc/config
         - name: data-volume
           mountPath: /data
+
       volumes:
-      - name: config-volume
+      - name: config-orig-volume
         configMap:
-          name: ssv-config  # Use the ConfigMap we created earlier
+          name: ssv-config
+      - name: config-volume
+        emptyDir: {}
       - name: data-volume
         hostPath:
           path: /home/eth_storage/
