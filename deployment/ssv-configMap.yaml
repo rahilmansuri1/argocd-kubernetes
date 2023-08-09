@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: ssv-config
-  namespace: app
+  namespace: ethereum
 data:
   config.yaml: |
     db:
