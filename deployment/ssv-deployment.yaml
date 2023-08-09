@@ -23,7 +23,7 @@ spec:
         - name: OPERATOR_PRIVATE_KEY
           valueFrom:
             secretKeyRef:
-              name: app-secret
+              name: operator-secret
               key: operatorPrivateKey
         volumeMounts:
         - name: config-volume
