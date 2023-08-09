@@ -12,7 +12,7 @@ data:
     eth2:
       BeaconNodeAddr: http://prysm-service:3500/
     eth1:
-      ETH1Addr: "wss://geth-service:8546"
+      ETH1Addr: http://geth-service:8546
     OperatorPrivateKey: OperatorPrivateKey
     global:
       LogLevel: debug
