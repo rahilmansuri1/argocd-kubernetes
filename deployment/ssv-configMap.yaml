@@ -7,6 +7,10 @@ data:
   config.yaml: |
     db:
       Path: /ssv_storage/ssvDB
+    p2p:
+      DiscoveryType: discv5
+      TcpPort: 13001
+      UdpPort: 12001
     ssv:
       Network: prater
     eth2:
