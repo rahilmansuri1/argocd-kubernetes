@@ -8,7 +8,11 @@ spec:
 
   source:
     repoURL: https://github.com/rahilmansuri1/argocd-kubernetes.git
+<<<<<<< HEAD
     targetRevision: secret
+=======
+    targetRevision: secretManager
+>>>>>>> 24f10a59fb77271310e04852cbc3ecb0b2c75f5c
     path: deployment
   destination: 
     server: https://kubernetes.default.svc
