@@ -18,7 +18,7 @@ spec:
         command: ["/bin/sh", "-c"]
         args:
         - |
-          cp /etc/config-orig/config.yaml /config.yaml && sed -i 's#OperatorPrivateKey: OperatorPrivateKey#OperatorPrivateKey: '"$OPERATOR_PRIVATE_KEY"'#' /etc/config/config.yaml
+          cp /etc/config-orig/config.yaml /etc/config/config.yaml && sed -i 's#OperatorPrivateKey: OperatorPrivateKey#OperatorPrivateKey: '"$OPERATOR_PRIVATE_KEY"'#' /etc/config/config.yaml
         env:
         - name: OPERATOR_PRIVATE_KEY
           valueFrom:
@@ -27,7 +27,7 @@ spec:
               key: operatorPrivateKey
         volumeMounts:
         - name: config-volume
-          mountPath: /
+          mountPath: /etc/config
         - name: config-orig-volume
           mountPath: /etc/config-orig
 
@@ -40,7 +40,7 @@ spec:
         - start-node
         env:
         - name: CONFIG_PATH
-          value: /config.yaml
+          value: /etc/config/config.yaml
         ports:
         - containerPort: 13001
           protocol: TCP
@@ -48,7 +48,7 @@ spec:
           protocol: UDP
         volumeMounts:
         - name: config-volume
-          mountPath: /
+          mountPath: /etc/config
         - name: data-volume
           mountPath: /data
 
