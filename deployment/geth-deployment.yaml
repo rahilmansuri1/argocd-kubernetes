@@ -78,7 +78,7 @@ spec:
   selector:
     matchLabels:
       app: geth
-  replicas: 0
+  # replicas: 0
   template:
     metadata:
       labels:

@@ -10,7 +10,7 @@ spec:
       app: prysm
   strategy:
     type: Recreate
-  replicas: 0
+  # replicas: 0
   template:
     metadata:
       labels:
