@@ -19,5 +19,5 @@ data:
       ETH1Addr: ws://geth-service:8546
     OperatorPrivateKey: OperatorPrivateKey
     global:
-      LogLevel: debug
+      LogLevel: info
     MetricsAPIPort: 15000
