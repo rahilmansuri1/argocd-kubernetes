@@ -16,7 +16,7 @@ data:
     eth2:
       BeaconNodeAddr: http://prysm-service:3500/
     eth1:
-      ETH1Addr: wss://goerli.infura.io/v3/952fa0af36a54eb19ba52ee32412a120
+      ETH1Addr: wss://goerli.infura.io/ws/v3/cbb5f1bf741b44db9bf5e9cf6a3d0030
     OperatorPrivateKey: OperatorPrivateKey
     global:
       LogLevel: info
