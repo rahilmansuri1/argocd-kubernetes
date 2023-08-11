@@ -22,3 +22,7 @@ spec:
       name: beaconb
       port: 3500
       targetPort: 3500
+    - protocol: TCP
+      name: prometheus
+      port: 8585
+  type: NodePort

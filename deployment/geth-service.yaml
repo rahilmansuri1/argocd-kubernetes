@@ -32,11 +32,9 @@ spec:
       targetPort: 9100
     - protocol: TCP
       name: ethereum
-      port: 6060
-      targetPort: 6060
+      port: 6161
+      targetPort: 6161
     - protocol: TCP
       name: geth-rpc
       port: 8551
       targetPort: 8551
-  #     nodePort: 32111
-  # type: NodePort

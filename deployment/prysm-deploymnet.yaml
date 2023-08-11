@@ -22,6 +22,10 @@ spec:
         volumeMounts:
         - name: prysm
           mountPath: /home/eth_storage
+        - name: jwt-secret-volume
+          mountPath: /secrets/jwtsecret
+          subPath: jwtsecret
+          readOnly: true 
         ports:
         - containerPort: 12000
           protocol: UDP
@@ -30,6 +34,8 @@ spec:
         - containerPort: 4000
           protocol: TCP
         - containerPort: 3500
+          protocol: TCP
+        - containerPort: 8585
           protocol: TCP
         args:
         - --accept-terms-of-use
@@ -41,9 +47,14 @@ spec:
         - --checkpoint-sync-url=https://goerli.beaconstate.info/
         - --genesis-beacon-api-url=https://goerli.beaconstate.info/
         - "--execution-endpoint=http://geth-service:8551"# Added the execution endpoint argument
-        - --jwt-secret=/home/eth_storage/jwtsecret
+        - --jwt-secret=/secrets/jwtsecret
+        - --monitoring-host=0.0.0.0
+        - --monitoring-port=8585
 
       volumes:
       - name: prysm
         hostPath:
           path: /home/eth_storage
+      - name: jwt-secret-volume
+        secret:
+          secretName: jwt-secret

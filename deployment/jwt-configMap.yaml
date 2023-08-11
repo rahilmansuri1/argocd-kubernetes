@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: jwt-secret
+type: Opaque
+data:
+  jwtsecret: YjJjZDNlM2NjMGExMDRjOTE3ZWEyZDZmZmYyZWFiNTY2ZTZkMjBkYzhhNzZhOTdjZjgyNTRkN2YxYjljMmRlOQ==  #base64 Value
