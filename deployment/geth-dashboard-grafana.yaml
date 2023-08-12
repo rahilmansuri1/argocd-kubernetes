@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: grafana-dashboards-config
+  name: grafana-dashboards-config  #remove s if mounting volume error
 data:
   my-dashboard.json: |
     {

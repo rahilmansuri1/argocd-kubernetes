@@ -42,6 +42,8 @@ spec:
           subPath: datasource.yaml
         - name: grafana-dashboard-volume
           mountPath: /etc/grafana/provisioning/dashboards/my-dashboard.json
+        - name: grafana-dashboard-prysm-volume
+          mountPath: /etc/grafana/provisioning/dashboards/my-dashboard-prysm.json
         - name: grafana-provisioning-dashboards-volume
           mountPath: /etc/grafana/provisioning/dashboards
       volumes:
@@ -51,6 +53,9 @@ spec:
       - name: grafana-dashboard-volume
         configMap:
           name: grafana-dashboard-config
+      - name: grafana-dashboard-prysm-volume
+        configMap:
+          name: grafana-dashboards-prysm-config
       - name: grafana-provisioning-dashboards-volume
         configMap:
           name: grafana-provisioning-dashboards
