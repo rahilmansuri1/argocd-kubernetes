@@ -40,8 +40,9 @@ spec:
         - --grpc-gateway-port=3500
         - --checkpoint-sync-url=https://goerli.beaconstate.info/
         - --genesis-beacon-api-url=https://goerli.beaconstate.info/
-        - "--execution-endpoint=http://geth-service:8551"# Added the execution endpoint argument
+        - --execution-endpoint=http://geth-service:8551
         - --jwt-secret=/home/eth_storage/jwtsecret
+        - --suggested-fee-recipient=0xdec1413daA0f91C692DC021911b490a06bb94F7a
 
       volumes:
       - name: prysm
