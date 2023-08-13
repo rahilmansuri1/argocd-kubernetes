@@ -1,22 +1,3 @@
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: grafana-deployment
-# spec:
-#   replicas: 1
-#   selector:
-#     matchLabels:
-#       app: grafana
-#   template:
-#     metadata:
-#       labels:
-#         app: grafana
-#     spec:
-#       containers:
-#       - name: grafana
-#         image: grafana/grafana
-#         ports:
-#         - containerPort: 3000
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -37,6 +18,9 @@ spec:
         ports:
         - containerPort: 3000
         volumeMounts:
+        - name: grafana-alerting-volume
+          mountPath: /etc/grafana/provisioning/alerting/alerting.yaml
+          subPath: alerting.yaml
         - name: grafana-datasource-volume
           mountPath: /etc/grafana/provisioning/datasources/prometheus.yaml
           subPath: datasource.yaml
@@ -52,6 +36,9 @@ spec:
       - name: grafana-datasource-volume
         configMap:
           name: grafana-datasource-config
+      - name: grafana-alerting-volume
+        configMap:
+          name: grafana-alerting-config
       - name: grafana-dashboard-volume
         configMap:
           name: grafana-dashboard-config
