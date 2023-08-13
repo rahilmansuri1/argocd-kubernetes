@@ -44,6 +44,8 @@ spec:
         ports:
         - containerPort: 13001
           protocol: TCP
+        - containerPort: 15000
+          protocol: TCP
         - containerPort: 12001
           protocol: UDP
         volumeMounts:

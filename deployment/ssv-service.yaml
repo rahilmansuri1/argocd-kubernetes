@@ -14,4 +14,8 @@ spec:
       protocol: UDP
       port: 12001
       targetPort: 12001
+    - name: metrics-port
+      protocol: TCP
+      port: 15000
+      targetPort: 15000
   type: ClusterIP
