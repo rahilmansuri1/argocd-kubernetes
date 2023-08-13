@@ -39,9 +39,9 @@ spec:
       - name: grafana-alerting-volume
         configMap:
           name: grafana-alerting-config
-      - name: grafana-dashboards-volume
+      - name: grafana-dashboard-volume
         configMap:
-          name: grafana-dashboard-config
+          name: grafana-dashboards-config
       - name: grafana-dashboard-prysm-volume
         configMap:
           name: grafana-dashboards-prysm-config
