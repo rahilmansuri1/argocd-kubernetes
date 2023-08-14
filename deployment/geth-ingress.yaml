@@ -1,52 +1,4 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: geth-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-  namespace: ethereum 
-spec:
-  rules:
-    - host: eth.ssv.com 
-      http:
-        paths:
-          - path: /rpc
-            pathType: Prefix
-            backend:
-              service:
-                name: geth-service
-                port:
-                  number: 8545
-          # - path: /geth
-          #   pathType: Prefix
-          #   backend:
-          #     service:
-          #       name: geth-service
-          #       port:
-          #         number: 8551
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# apiVersion: networking.k8s.io/v1beta1
+# apiVersion: networking.k8s.io/v1
 # kind: Ingress
 # metadata:
 #   name: geth-ingress
@@ -55,22 +7,70 @@ spec:
 #   namespace: ethereum 
 # spec:
 #   rules:
-#     - host: ethssv.com 
+#     - host: eth.ssv.com 
 #       http:
 #         paths:
-#         # - pathType: Prefix
-#         - path: "/rpc"
-#           backend:
-#             service:
-#               name: geth-service
-#               port: 8551
-
-           
-#           #         number: 8545
-#           # - path: /geth-rpc
+#           - path: /rpc
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: geth-service
+#                 port:
+#                   number: 8545
+#           # - path: /geth
 #           #   pathType: Prefix
 #           #   backend:
 #           #     service:
 #           #       name: geth-service
 #           #       port:
 #           #         number: 8551
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# # apiVersion: networking.k8s.io/v1beta1
+# # kind: Ingress
+# # metadata:
+# #   name: geth-ingress
+# #   annotations:
+# #     nginx.ingress.kubernetes.io/rewrite-target: /
+# #   namespace: ethereum 
+# # spec:
+# #   rules:
+# #     - host: ethssv.com 
+# #       http:
+# #         paths:
+# #         # - pathType: Prefix
+# #         - path: "/rpc"
+# #           backend:
+# #             service:
+# #               name: geth-service
+# #               port: 8551
+
+           
+# #           #         number: 8545
+# #           # - path: /geth-rpc
+# #           #   pathType: Prefix
+# #           #   backend:
+# #           #     service:
+# #           #       name: geth-service
+# #           #       port:
+# #           #         number: 8551
