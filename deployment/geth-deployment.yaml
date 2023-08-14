@@ -16,7 +16,7 @@
 #     spec:
 #       containers:
 #       - name: geth
-#         image: ethereum/client-go:latest
+#         image: ethereum/client-go:stable
 #         volumeMounts:
 #         - name: eth-storage
 #           mountPath: /home/eth_storage/
