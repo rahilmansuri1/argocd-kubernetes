@@ -25,4 +25,4 @@ spec:
     - protocol: TCP
       name: prometheus
       port: 8585
-  type: NodePort
+  #type: NodePort
