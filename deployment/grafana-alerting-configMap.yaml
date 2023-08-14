@@ -1946,7 +1946,7 @@ data:
             - uid: Zc8BIjL4k
               type: discord
               settings:
-              url: https://discord.com/api/webhooks/1140534512795791461/5Um84Uw6Tn4xdbG1-m8jAeDuRovVT0BS1i0GGuFNtsS2BicZXfA6wPZjejZ43kRN5Wed
+                url: https://discord.com/api/webhooks/1140534512795791461/5Um84Uw6Tn4xdbG1-m8jAeDuRovVT0BS1i0GGuFNtsS2BicZXfA6wPZjejZ43kRN5Wed
       policies:
         - orgId: 1
           receiver: Discord
