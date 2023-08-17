@@ -1,10 +1,10 @@
 # /argocd-kubernetes/deployment/kustomization.yaml
 resources:
   - configMap/grafana/alerting/grafana-alerting-configMap.yaml
-  - deployments/
-  - externalSecrets/
-  - ingress/
-  - persistanceVolume/
-  - persistanceVolumeClaim/
-  - secrets/
-  - service/
+  # - deployments/
+  # - externalSecrets/
+  # - ingress/
+  # - persistanceVolume/
+  # - persistanceVolumeClaim/
+  # - secrets/
+  # - service/
