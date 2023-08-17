@@ -1,6 +1,6 @@
 # /argocd-kubernetes/deployment/kustomization.yaml
 resources:
-  - configMap/grafana/alerting/
+  - configMap/grafana/alerting/grafana-alerting-configMap.yaml
   - deployments/
   - externalSecrets/
   - ingress/
