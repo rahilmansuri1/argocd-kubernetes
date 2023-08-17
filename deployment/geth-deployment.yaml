@@ -18,8 +18,8 @@ spec:
       - name: geth
         image: ethereum/client-go:stable
         volumeMounts:
-        - name: eth-storage
-          mountPath: /home/eth_storage/
+        - name: eth-persistent-storage
+          mountPath: /home/ubuntu
         - name: jwt-secret-volume
           mountPath: /secrets/jwtsecret
           subPath: jwtsecret
@@ -43,32 +43,25 @@ spec:
           protocol: TCP
         args:
           - --goerli
-          - --http.addr
-          - 0.0.0.0
+          - --http.addr=0.0.0.0
           - --ws
-          - --ws.origins
-          - "*"
-          - --ws.addr
-          - 0.0.0.0
+          - --ws.origins="*"
+          - --ws.addr=0.0.0.0
           - --ws.port=8546
-          - --authrpc.addr 
-          - 0.0.0.0 
+          - --authrpc.addr=0.0.0.0 
           - --authrpc.port=8551
-          - --authrpc.vhosts
-          - "*"
+          - --authrpc.vhosts="*"
           - --http
           - --metrics
           - --metrics.addr=0.0.0.0
           - --metrics.port=6161
           - --pprof
-          - --datadir
-          - /home/eth_storage/geth_storage
-          - --authrpc.jwtsecret   # Add the flag here
-          - /secrets/jwtsecret   # Path to the JWT secret file inside the mounted ConfigMap volume
+          - --datadir=/home/ubuntu/eth_storage/geth_storage
+          - --authrpc.jwtsecret=/secrets/jwtsecret
       volumes:
-      - name: eth-storage
-        hostPath:
-          path: /home/eth_storage/
+      - name: eth-persistent-storage
+        persistentVolumeClaim:
+          claimName: geth-pvc
       - name: jwt-secret-volume
         secret:
           secretName: jwt-secret

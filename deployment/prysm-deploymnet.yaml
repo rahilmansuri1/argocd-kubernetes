@@ -20,8 +20,8 @@ spec:
       - name: prysm
         image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
         volumeMounts:
-        - name: prysm
-          mountPath: /home/eth_storage
+        - name: prysm-persistent-storage
+          mountPath: /home/ubuntu
         - name: jwt-secret-volume
           mountPath: /secrets/jwtsecret
           subPath: jwtsecret
@@ -39,22 +39,21 @@ spec:
           protocol: TCP
         args:
         - --accept-terms-of-use
-        - --datadir=/home/eth_storage
+        - --datadir=/home/ubuntu/eth_storage/prysm_storage
         - --rpc-host=0.0.0.0
         - --goerli
         - --grpc-gateway-host=0.0.0.0
         - --grpc-gateway-port=3500
         - --checkpoint-sync-url=https://goerli.beaconstate.info/
         - --genesis-beacon-api-url=https://goerli.beaconstate.info/
-        - "--execution-endpoint=http://geth-service:8551"# Added the execution endpoint argument
+        - "--execution-endpoint=http://geth-service:8551"
         - --jwt-secret=/secrets/jwtsecret
         - --monitoring-host=0.0.0.0
         - --monitoring-port=8585
-
       volumes:
-      - name: prysm
-        hostPath:
-          path: /home/eth_storage
+      - name: prysm-persistent-storage
+        persistentVolumeClaim:
+          claimName: prysm-pvc
       - name: jwt-secret-volume
         secret:
           secretName: jwt-secret
