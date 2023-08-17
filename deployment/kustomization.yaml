@@ -24,12 +24,12 @@ resources:
 
 
 #------------------------EXTERNAL_SECRET------------------------------------------#
-  - externalSecrets/
+  - externalSecrets/golbal-secret-store.yaml
 
 
 
 #--------------------------INGRESS----------------------------------------------#
-  - externalSecrets/
+  - ingress/geth-ingress.yaml
 
 
 
