@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/rahilmansuri1/argocd-kubernetes.git
     targetRevision: structure
-    path: deployment
+    path: argocd-kubernetes/deployment/
   destination: 
     server: https://kubernetes.default.svc
     namespace: ethereum
