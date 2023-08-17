@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: prysm-pvc
 spec:
-  storageClassName: manual
+  storageClassName: default
   accessModes:
     - ReadWriteOnce
   resources:

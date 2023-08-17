@@ -5,7 +5,7 @@ metadata:
   labels:
     type: local
 spec:
-  storageClassName: manual
+  storageClassName: default
   capacity:
     storage: 10Gi  # Adjust this as needed also adjust in PVC
   accessModes:
