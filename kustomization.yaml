@@ -1,0 +1,10 @@
+# /argocd-kubernetes/deployment/kustomization.yaml
+resources:
+  - configMap/
+  - deployments/
+  - externalSecrets/
+  - ingress/
+  - persistanceVolume/
+  - persistanceVolumeClaim/
+  - secrets/
+  - service/
