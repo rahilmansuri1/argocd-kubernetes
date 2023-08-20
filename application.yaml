@@ -8,13 +8,14 @@ spec:
 
   source:
     repoURL: https://github.com/rahilmansuri1/argocd-kubernetes.git
-    targetRevision: structure
-    path: argocd-kubernetes/menifest/
+    targetRevision: kustomize
+    path: menifest
   destination: 
     server: https://kubernetes.default.svc
     namespace: ethereum
-
   syncPolicy:
+    automated: {}
+  # syncPolicy:
     syncOptions:
     - CreateNamespace=true
 
