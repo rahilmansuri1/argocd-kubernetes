@@ -1,5 +1,5 @@
 resources:
 - ../../../secrets
 
-patchesStrategicMerge:
+patches:
 - operatorPrivatekeyConfig-patch.yaml
