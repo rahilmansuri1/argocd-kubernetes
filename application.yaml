@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/rahilmansuri1/argocd-kubernetes.git
     targetRevision: kustomize
-    path: menifest
+    path: menifest/overlays/custom-patches/
   destination: 
     server: https://kubernetes.default.svc
     namespace: ethereum
