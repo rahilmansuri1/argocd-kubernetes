@@ -22,7 +22,6 @@ data:
       - job_name: 'beacon node'
         static_configs:
           - targets: ['prysm-service:8585']
-      - job_name: 'ssv'
-        metrics_path: /metrics
+      - job_name: 'validator'
         static_configs:
-          - targets: ['ssv-node-service:15000']
+          - targets: ['validator-service:8686']

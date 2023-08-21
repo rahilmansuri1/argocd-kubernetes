@@ -8,8 +8,8 @@ spec:
 
   source:
     repoURL: https://github.com/rahilmansuri1/argocd-kubernetes.git
-    targetRevision: structure
-    path: argocd-kubernetes/menifest/
+    targetRevision: eth_staking
+    path: menifest
   destination: 
     server: https://kubernetes.default.svc
     namespace: ethereum

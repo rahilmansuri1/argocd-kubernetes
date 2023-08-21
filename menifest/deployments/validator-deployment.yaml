@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: validator-deployment
+  labels:
+    app: validator
+spec:
+  selector:
+    matchLabels:
+      app: validator
+  strategy:
+    type: Recreate
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: validator
+    spec:
+      containers:
+      - name: prysm
+        image: gcr.io/prysmaticlabs/prysm/validator:stable
+        volumeMounts:
+        - name: validator-persistent-storage
+          mountPath: /home/ubuntu
+        - name: wallet-password-volume
+          mountPath: /home/ubuntu/password
+          subPath: password
+          readOnly: true 
+        ports:
+        - containerPort: 12000
+          protocol: UDP
+        - containerPort: 13000
+          protocol: TCP
+        - containerPort: 4000
+          protocol: TCP
+        - containerPort: 3500
+          protocol: TCP
+        - containerPort: 8686
+          protocol: TCP
+        args:
+        - --accept-terms-of-use
+        - --datadir=/home/ubuntu/eth_storage/validator_storage
+        - --enable-builder
+        - --beacon-rpc-provider=prysm-service:4000
+        - --wallet-password-file=/home/ubuntu/password
+        - --wallet-dir=/home/ubuntu
+        - --goerli
+        - --monitoring-host=0.0.0.0
+        - --monitoring-port=8686
+      volumes:
+      - name: validator-persistent-storage
+        persistentVolumeClaim:
+          claimName: validator-pvc
+      - name: wallet-password-volume
+        secret:
+          secretName: password
