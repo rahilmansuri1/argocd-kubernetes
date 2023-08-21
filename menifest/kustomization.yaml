@@ -7,11 +7,11 @@ resources:
   - configMap/grafana/dashboards/geth-dashboard-grafana.yaml
   - configMap/grafana/dashboards/grafana-dashboard-provisionning.yaml
   - configMap/grafana/dashboards/prysm-dashboard-grafana.yaml
-  - configMap/grafana/dashboards/ssv-dashboard-grafana.yaml
+  # - configMap/grafana/dashboards/ssv-dashboard-grafana.yaml
   - configMap/grafana/datasources/grafana-datasource-provisioning.yaml
   - configMap/jwt/jwt-configMap.yaml
   - configMap/prometheus/prometheus-configMap.yaml
-  - configMap/ssv/ssv-configMap.yaml
+  # - configMap/ssv/ssv-configMap.yaml
 
 
 #--------------------------DEPLOYMENT---------------------------------------------#
@@ -20,7 +20,7 @@ resources:
   - deployments/node-exporter-deployment.yaml
   - deployments/prometheus-deployment.yaml
   - deployments/prysm-deploymnet.yaml
-  - deployments/ssv-deployment.yaml
+  - deployments/validator-deployment.yaml
 
 
 #------------------------EXTERNAL_SECRET------------------------------------------#
@@ -36,16 +36,19 @@ resources:
 #------------------------PERSISTANCE-VOLUME------------------------------------------#
   - persistanceVolume/geth-pv.yaml
   - persistanceVolume/prysm-pv.yaml
+  - persistanceVolume/validator-pv.yaml
 
 
 #------------------------PERSISTANCE-VOLUME-CLAIM------------------------------------------#
   - persistanceVolumeClaim/geth-pvc.yaml
   - persistanceVolumeClaim/prysm-pvc.yaml
+  - persistanceVolumeClaim/validator-pvc.yaml
 
 
 #--------------------------SECRETS----------------------------------------------#
   - secrets/aws-credintial-secret.yaml
-  - secrets/ssvOperatorPrivateKey-secret.yaml
+  # - secrets/ssvOperatorPrivateKey-secret.yaml
+  - secrets/validator-wallet-password.yaml
 
 
 #--------------------------SERVICE----------------------------------------------#
@@ -55,3 +58,4 @@ resources:
   - service/prometheus-service.yaml
   - service/prysm-service.yaml
   - service/ssv-service.yaml
+  - service/validator-service.yaml
