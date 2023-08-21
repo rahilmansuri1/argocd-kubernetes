@@ -12,7 +12,7 @@ resources:
   - configMap/jwt/jwt-configMap.yaml
   - configMap/prometheus/prometheus-configMap.yaml
   # - configMap/ssv/ssv-configMap.yaml
-
+  - configMap/grafana/dashboards/node-metrics-grafana.yaml
 
 #--------------------------DEPLOYMENT---------------------------------------------#
   - deployments/geth-deployment.yaml
