@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: grafana-dashboards-Node-Exporter-config
+  name: grafana-dashboards-node-exporter-config
 data:
-  my-dashboard-Node-Exporter.json: |
+  my-dashboard-node-exporter.json: |
     {
       "annotations": {
         "list": [
