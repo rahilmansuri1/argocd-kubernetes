@@ -28,8 +28,8 @@ spec:
           mountPath: /etc/grafana/provisioning/dashboards/my-dashboard.json
         - name: grafana-dashboard-prysm-volume
           mountPath: /etc/grafana/provisioning/dashboards/my-dashboard-prysm.json
-        - name: grafana-dashboard-ssv-volume
-          mountPath: /etc/grafana/provisioning/dashboards/my-dashboard-ssv.json
+        # - name: grafana-dashboard-ssv-volume
+        #   mountPath: /etc/grafana/provisioning/dashboards/my-dashboard-ssv.json
         - name: grafana-provisioning-dashboards-volume
           mountPath: /etc/grafana/provisioning/dashboards
       volumes:
@@ -45,9 +45,9 @@ spec:
       - name: grafana-dashboard-prysm-volume
         configMap:
           name: grafana-dashboards-prysm-config
-      - name: grafana-dashboard-ssv-volume
-        configMap:
-          name: grafana-dashboards-ssv-config
+      # - name: grafana-dashboard-ssv-volume
+      #   configMap:
+      #     name: grafana-dashboards-ssv-config
       - name: grafana-provisioning-dashboards-volume
         configMap:
           name: grafana-provisioning-dashboards
