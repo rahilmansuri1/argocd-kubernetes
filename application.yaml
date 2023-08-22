@@ -12,7 +12,7 @@ spec:
     path: menifest
   destination: 
     server: https://kubernetes.default.svc
-    namespace: ethereum
+    namespace: eth_staking
 
   syncPolicy:
     syncOptions:
