@@ -2,20 +2,20 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: eth-staking-infra
+  namespace: argocd
 spec:
-  destination:
-    name: ''
-    namespace: eth-staking
-    server: 'https://kubernetes.default.svc'
-  source:
-    path: eth-staking/menifest
-    repoURL: 'https://github.com/rahilmansuri1/argocd-kubernetes.git'
-    targetRevision: eth_staking
-  sources: []
   project: default
+
+  source:
+    repoURL: https://github.com/rahilmansuri1/argocd-kubernetes.git
+    targetRevision: eth_staking
+    path: eth-staking/menifest
+  destination: 
+    server: https://kubernetes.default.svc
+    namespace: eth-staking
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
     syncOptions:
-      - CreateNamespace=true
+    - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
