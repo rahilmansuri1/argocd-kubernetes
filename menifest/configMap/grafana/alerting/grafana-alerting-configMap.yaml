@@ -6,783 +6,6 @@ data:
   alerting.yaml: |
       apiVersion: 1
       groups:
-          # - orgId: 1
-          #   name: SSV-EG
-          #   folder: SSV-Alert
-          #   interval: 1m
-          #   rules:
-          #     # - uid: ce1cb4bc-462c-4225-847c-0d4ebd3372ff
-          #     #   title: CPU Usage
-          #     #   condition: D
-          #     #   data:
-          #     #     - refId: A
-          #     #       relativeTimeRange:
-          #     #         from: 43200
-          #     #         to: 0
-          #     #       datasourceUid: PBFA97CFB590B2093
-          #     #       model:
-          #     #         datasource:
-          #     #             type: prometheus
-          #     #             uid: PBFA97CFB590B2093
-          #     #         expr: avg(1 - avg(rate(node_cpu_seconds_total{origin_prometheus=~"",job=~"node_exporter",mode="idle"}[2m])) by (instance)) * 100
-          #     #         format: time_series
-          #     #         hide: false
-          #     #         interval: 30m
-          #     #         intervalFactor: 1
-          #     #         intervalMs: 15000
-          #     #         legendFormat: Overall average used%
-          #     #         maxDataPoints: 43200
-          #     #         refId: A
-          #     #         step: 240
-          #     #     - refId: B
-          #     #       relativeTimeRange:
-          #     #         from: 600
-          #     #         to: 0
-          #     #       datasourceUid: __expr__
-          #     #       model:
-          #     #         conditions:
-          #     #             - evaluator:
-          #     #                 params: []
-          #     #                 type: gt
-          #     #               operator:
-          #     #                 type: and
-          #     #               query:
-          #     #                 params:
-          #     #                     - C
-          #     #               reducer:
-          #     #                 params: []
-          #     #                 type: last
-          #     #               type: query
-          #     #         datasource:
-          #     #             type: __expr__
-          #     #             uid: __expr__
-          #     #         expression: A
-          #     #         hide: false
-          #     #         intervalMs: 1000
-          #     #         maxDataPoints: 43200
-          #     #         reducer: last
-          #     #         refId: B
-          #     #         type: reduce
-          #     #     - refId: C
-          #     #       relativeTimeRange:
-          #     #         from: 600
-          #     #         to: 0
-          #     #       datasourceUid: __expr__
-          #     #       model:
-          #     #         conditions:
-          #     #             - evaluator:
-          #     #                 params:
-          #     #                     - 50
-          #     #                 type: gt
-          #     #               operator:
-          #     #                 type: and
-          #     #               query:
-          #     #                 params:
-          #     #                     - D
-          #     #               reducer:
-          #     #                 params: []
-          #     #                 type: last
-          #     #               type: query
-          #     #         datasource:
-          #     #             type: __expr__
-          #     #             uid: __expr__
-          #     #         expression: B
-          #     #         hide: false
-          #     #         intervalMs: 1000
-          #     #         maxDataPoints: 43200
-          #     #         refId: C
-          #     #         type: threshold
-          #     #     - refId: D
-          #     #       datasourceUid: __expr__
-          #     #       model:
-          #     #         conditions:
-          #     #             - evaluator:
-          #     #                 params:
-          #     #                     - 70
-          #     #                     - 0
-          #     #                 type: gt
-          #     #               operator:
-          #     #                 type: and
-          #     #               query:
-          #     #                 params: []
-          #     #               reducer:
-          #     #                 params: []
-          #     #                 type: avg
-          #     #               type: query
-          #     #         datasource:
-          #     #             name: Expression
-          #     #             type: __expr__
-          #     #             uid: __expr__
-          #     #         expression: B
-          #     #         intervalMs: 1000
-          #     #         maxDataPoints: 43200
-          #     #         refId: D
-          #     #         type: threshold
-          #     #   dashboardUid: OtherDashboards
-          #     #   panelId: 7
-          #     #   noDataState: NoData
-          #     #   execErrState: Error
-          #     #   for: 5m
-          #     #   annotations:
-          #     #     __dashboardUid__: OtherDashboards
-          #     #     __panelId__: "7"
-          #     #     description: CPU Usage is {{ $values.B }} %
-          #     #     summary: SSV- CPU Usage Alert
-          #     #   isPaused: false
-          #     # - uid: b1d341e2-2e7f-47d2-a222-97a28101ba99
-          #     #   title: Memory Usage
-          #     #   condition: C
-          #     #   data:
-          #     #     - refId: A
-          #     #       relativeTimeRange:
-          #     #         from: 43200
-          #     #         to: 0
-          #     #       datasourceUid: PBFA97CFB590B2093
-          #     #       model:
-          #     #         datasource:
-          #     #             type: prometheus
-          #     #             uid: PBFA97CFB590B2093
-          #     #         expr: (sum(node_memory_MemTotal_bytes{origin_prometheus=~"",job=~"node_exporter"} - node_memory_MemAvailable_bytes{origin_prometheus=~"",job=~"node_exporter"}) / sum(node_memory_MemTotal_bytes{origin_prometheus=~"",job=~"node_exporter"}))*100
-          #     #         format: time_series
-          #     #         hide: false
-          #     #         interval: 30m
-          #     #         intervalFactor: 1
-          #     #         intervalMs: 15000
-          #     #         legendFormat: Overall Average Used%
-          #     #         maxDataPoints: 43200
-          #     #         refId: A
-          #     #     - refId: B
-          #     #       relativeTimeRange:
-          #     #         from: 600
-          #     #         to: 0
-          #     #       datasourceUid: __expr__
-          #     #       model:
-          #     #         conditions:
-          #     #             - evaluator:
-          #     #                 params: []
-          #     #                 type: gt
-          #     #               operator:
-          #     #                 type: and
-          #     #               query:
-          #     #                 params:
-          #     #                     - C
-          #     #               reducer:
-          #     #                 params: []
-          #     #                 type: last
-          #     #               type: query
-          #     #         datasource:
-          #     #             type: __expr__
-          #     #             uid: __expr__
-          #     #         expression: A
-          #     #         hide: false
-          #     #         intervalMs: 1000
-          #     #         maxDataPoints: 43200
-          #     #         reducer: last
-          #     #         refId: B
-          #     #         type: reduce
-          #     #     - refId: C
-          #     #       relativeTimeRange:
-          #     #         from: 600
-          #     #         to: 0
-          #     #       datasourceUid: __expr__
-          #     #       model:
-          #     #         conditions:
-          #     #             - evaluator:
-          #     #                 params:
-          #     #                     - 60
-          #     #                 type: gt
-          #     #               operator:
-          #     #                 type: and
-          #     #               query:
-          #     #                 params:
-          #     #                     - D
-          #     #               reducer:
-          #     #                 params: []
-          #     #                 type: last
-          #     #               type: query
-          #     #         datasource:
-          #     #             type: __expr__
-          #     #             uid: __expr__
-          #     #         expression: B
-          #     #         hide: false
-          #     #         intervalMs: 1000
-          #     #         maxDataPoints: 43200
-          #     #         refId: C
-          #     #         type: threshold
-          #     #     - refId: D
-          #     #       datasourceUid: __expr__
-          #     #       model:
-          #     #         conditions:
-          #     #             - evaluator:
-          #     #                 params:
-          #     #                     - 70
-          #     #                     - 0
-          #     #                 type: gt
-          #     #               operator:
-          #     #                 type: and
-          #     #               query:
-          #     #                 params: []
-          #     #               reducer:
-          #     #                 params: []
-          #     #                 type: avg
-          #     #               type: query
-          #     #         datasource:
-          #     #             name: Expression
-          #     #             type: __expr__
-          #     #             uid: __expr__
-          #     #         expression: B
-          #     #         intervalMs: 1000
-          #     #         maxDataPoints: 43200
-          #     #         refId: D
-          #     #         type: threshold
-          #     #   dashboardUid: OtherDashboards
-          #     #   panelId: 195
-          #     #   noDataState: NoData
-          #     #   execErrState: Error
-          #     #   for: 5m
-          #     #   annotations:
-          #     #     __dashboardUid__: OtherDashboards
-          #     #     __panelId__: "195"
-          #     #     description: Memory usage is {{ $values.B }} %
-          #     #     summary: SSV- Memory usage
-          #     #   isPaused: false
-          #     # - uid: e659d834-441e-4eba-82cd-d178a2e78abc
-          #     #   title: Total Disk Usage
-          #     #   condition: C
-          #     #   data:
-          #     #     - refId: A
-          #     #       relativeTimeRange:
-          #     #         from: 43200
-          #     #         to: 0
-          #     #       datasourceUid: PBFA97CFB590B2093
-          #     #       model:
-          #     #         datasource:
-          #     #             type: prometheus
-          #     #             uid: PBFA97CFB590B2093
-          #     #         expr: (sum(avg(node_filesystem_size_bytes{origin_prometheus=~"",job=~"node_exporter",fstype=~"xfs|ext.*"})by(device,instance)) - sum(avg(node_filesystem_free_bytes{origin_prometheus=~"",job=~"node_exporter",fstype=~"xfs|ext.*"})by(device,instance))) *100/(sum(avg(node_filesystem_avail_bytes{origin_prometheus=~"",job=~"node_exporter",fstype=~"xfs|ext.*"})by(device,instance))+(sum(avg(node_filesystem_size_bytes{origin_prometheus=~"",job=~"node_exporter",fstype=~"xfs|ext.*"})by(device,instance)) - sum(avg(node_filesystem_free_bytes{origin_prometheus=~"",job=~"node_exporter",fstype=~"xfs|ext.*"})by(device,instance))))
-          #     #         format: time_series
-          #     #         instant: false
-          #     #         interval: 30m
-          #     #         intervalFactor: 1
-          #     #         intervalMs: 15000
-          #     #         legendFormat: Overall Average Used%
-          #     #         maxDataPoints: 43200
-          #     #         refId: A
-          #     #     - refId: B
-          #     #       relativeTimeRange:
-          #     #         from: 43200
-          #     #         to: 0
-          #     #       datasourceUid: __expr__
-          #     #       model:
-          #     #         conditions:
-          #     #             - evaluator:
-          #     #                 params: []
-          #     #                 type: gt
-          #     #               operator:
-          #     #                 type: and
-          #     #               query:
-          #     #                 params:
-          #     #                     - B
-          #     #               reducer:
-          #     #                 params: []
-          #     #                 type: last
-          #     #               type: query
-          #     #         datasource:
-          #     #             type: __expr__
-          #     #             uid: __expr__
-          #     #         expression: A
-          #     #         hide: false
-          #     #         intervalMs: 1000
-          #     #         maxDataPoints: 43200
-          #     #         reducer: last
-          #     #         refId: B
-          #     #         type: reduce
-          #     #     - refId: C
-          #     #       relativeTimeRange:
-          #     #         from: 43200
-          #     #         to: 0
-          #     #       datasourceUid: __expr__
-          #     #       model:
-          #     #         conditions:
-          #     #             - evaluator:
-          #     #                 params:
-          #     #                     - 80
-          #     #                 type: gt
-          #     #               operator:
-          #     #                 type: and
-          #     #               query:
-          #     #                 params:
-          #     #                     - D
-          #     #               reducer:
-          #     #                 params: []
-          #     #                 type: last
-          #     #               type: query
-          #     #         datasource:
-          #     #             type: __expr__
-          #     #             uid: __expr__
-          #     #         expression: B
-          #     #         hide: false
-          #     #         intervalMs: 1000
-          #     #         maxDataPoints: 43200
-          #     #         refId: C
-          #     #         type: threshold
-          #     #   dashboardUid: OtherDashboards
-          #     #   panelId: 197
-          #     #   noDataState: NoData
-          #     #   execErrState: Error
-          #     #   for: 5m
-          #     #   annotations:
-          #     #     __dashboardUid__: OtherDashboards
-          #     #     __panelId__: "197"
-          #     #     description: Disk usage is {{ $values.B }} %
-          #     #     summary: SSV- Disk usage
-          #     #   isPaused: false
-          #     - uid: ae897e23-edde-4d23-9400-a63b1de3617c
-          #       title: SSV_Beacon_Node
-          #       condition: C
-          #       data:
-          #         - refId: A
-          #           relativeTimeRange:
-          #             from: 60
-          #             to: 0
-          #           datasourceUid: PBFA97CFB590B2093
-          #           model:
-          #             datasource:
-          #                 type: prometheus
-          #                 uid: PBFA97CFB590B2093
-          #             editorMode: code
-          #             expr: ssv_beacon_status
-          #             hide: false
-          #             intervalMs: 1000
-          #             legendFormat: __auto
-          #             maxDataPoints: 43200
-          #             range: true
-          #             refId: A
-          #         - refId: B
-          #           relativeTimeRange:
-          #             from: 60
-          #             to: 0
-          #           datasourceUid: __expr__
-          #           model:
-          #             conditions:
-          #                 - evaluator:
-          #                     params: []
-          #                     type: gt
-          #                   operator:
-          #                     type: and
-          #                   query:
-          #                     params:
-          #                         - B
-          #                   reducer:
-          #                     params: []
-          #                     type: last
-          #                   type: query
-          #             datasource:
-          #                 type: __expr__
-          #                 uid: __expr__
-          #             expression: A
-          #             hide: false
-          #             intervalMs: 1000
-          #             maxDataPoints: 43200
-          #             reducer: last
-          #             refId: B
-          #             type: reduce
-          #         - refId: C
-          #           relativeTimeRange:
-          #             from: 60
-          #             to: 0
-          #           datasourceUid: __expr__
-          #           model:
-          #             conditions:
-          #                 - evaluator:
-          #                     params:
-          #                         - 2
-          #                     type: lt
-          #                   operator:
-          #                     type: and
-          #                   query:
-          #                     params:
-          #                         - C
-          #                   reducer:
-          #                     params: []
-          #                     type: last
-          #                   type: query
-          #             datasource:
-          #                 type: __expr__
-          #                 uid: __expr__
-          #             expression: B
-          #             hide: false
-          #             intervalMs: 1000
-          #             maxDataPoints: 43200
-          #             refId: C
-          #             type: threshold
-          #       dashboardUid: SSV
-          #       panelId: 48
-          #       noDataState: NoData
-          #       execErrState: Error
-          #       for: 1m
-          #       annotations:
-          #         __dashboardUid__: SSV
-          #         __panelId__: "48"
-          #         summary: The instance has been down for more than 30 seconds.
-          #       isPaused: false
-          #     - uid: a24bbae7-028d-4128-bc15-f77bc2b1b83b
-          #       title: Geth_Alert
-          #       condition: C
-          #       data:
-          #         - refId: A
-          #           relativeTimeRange:
-          #             from: 120
-          #             to: 0
-          #           datasourceUid: PBFA97CFB590B2093
-          #           model:
-          #             datasource:
-          #                 type: prometheus
-          #                 uid: PBFA97CFB590B2093
-          #             editorMode: code
-          #             expr: ssv_eth1_status
-          #             hide: false
-          #             intervalMs: 1000
-          #             legendFormat: __auto
-          #             maxDataPoints: 43200
-          #             range: true
-          #             refId: A
-          #         - refId: B
-          #           relativeTimeRange:
-          #             from: 120
-          #             to: 0
-          #           datasourceUid: __expr__
-          #           model:
-          #             conditions:
-          #                 - evaluator:
-          #                     params: []
-          #                     type: gt
-          #                   operator:
-          #                     type: and
-          #                   query:
-          #                     params:
-          #                         - B
-          #                   reducer:
-          #                     params: []
-          #                     type: last
-          #                   type: query
-          #             datasource:
-          #                 type: __expr__
-          #                 uid: __expr__
-          #             expression: A
-          #             hide: false
-          #             intervalMs: 1000
-          #             maxDataPoints: 43200
-          #             reducer: min
-          #             refId: B
-          #             type: reduce
-          #         - refId: C
-          #           relativeTimeRange:
-          #             from: 120
-          #             to: 0
-          #           datasourceUid: __expr__
-          #           model:
-          #             conditions:
-          #                 - evaluator:
-          #                     params:
-          #                         - 0.99
-          #                     type: lt
-          #                   operator:
-          #                     type: and
-          #                   query:
-          #                     params:
-          #                         - C
-          #                   reducer:
-          #                     params: []
-          #                     type: last
-          #                   type: query
-          #             datasource:
-          #                 type: __expr__
-          #                 uid: __expr__
-          #             expression: B
-          #             hide: false
-          #             intervalMs: 1000
-          #             maxDataPoints: 43200
-          #             refId: C
-          #             type: threshold
-          #       dashboardUid: SSV
-          #       panelId: 46
-          #       noDataState: Alerting
-          #       execErrState: Error
-          #       for: 1m
-          #       annotations:
-          #         __dashboardUid__: SSV
-          #         __panelId__: "46"
-          #         summary: SSV_ETH_Status
-          #       isPaused: false
-          #     - uid: adf1fdfc-4229-4eeb-bdba-4a03d2e67291
-          #       title: SSV_Node_Status
-          #       condition: C
-          #       data:
-          #         - refId: A
-          #           relativeTimeRange:
-          #             from: 120
-          #             to: 0
-          #           datasourceUid: PBFA97CFB590B2093
-          #           model:
-          #             datasource:
-          #                 type: prometheus
-          #                 uid: PBFA97CFB590B2093
-          #             editorMode: code
-          #             expr: ssv_node_status + 1
-          #             hide: false
-          #             intervalMs: 1000
-          #             legendFormat: __auto
-          #             maxDataPoints: 43200
-          #             range: true
-          #             refId: A
-          #         - refId: B
-          #           relativeTimeRange:
-          #             from: 120
-          #             to: 0
-          #           datasourceUid: __expr__
-          #           model:
-          #             conditions:
-          #                 - evaluator:
-          #                     params: []
-          #                     type: gt
-          #                   operator:
-          #                     type: and
-          #                   query:
-          #                     params:
-          #                         - B
-          #                   reducer:
-          #                     params: []
-          #                     type: last
-          #                   type: query
-          #             datasource:
-          #                 type: __expr__
-          #                 uid: __expr__
-          #             expression: A
-          #             hide: false
-          #             intervalMs: 1000
-          #             maxDataPoints: 43200
-          #             reducer: min
-          #             refId: B
-          #             type: reduce
-          #         - refId: C
-          #           relativeTimeRange:
-          #             from: 120
-          #             to: 0
-          #           datasourceUid: __expr__
-          #           model:
-          #             conditions:
-          #                 - evaluator:
-          #                     params:
-          #                         - 1
-          #                     type: lt
-          #                   operator:
-          #                     type: and
-          #                   query:
-          #                     params:
-          #                         - C
-          #                   reducer:
-          #                     params: []
-          #                     type: last
-          #                   type: query
-          #             datasource:
-          #                 type: __expr__
-          #                 uid: __expr__
-          #             expression: B
-          #             hide: false
-          #             intervalMs: 1000
-          #             maxDataPoints: 43200
-          #             refId: C
-          #             type: threshold
-          #       dashboardUid: SSV
-          #       panelId: 44
-          #       noDataState: NoData
-          #       execErrState: Error
-          #       for: 1m
-          #       annotations:
-          #         __dashboardUid__: SSV
-          #         __panelId__: "44"
-          #         summary: SSV node is down
-          #       isPaused: false
-          #     - uid: f81350e9-7ed6-4f9d-ae27-83114658f9ba
-          #       title: SSV_Node_Error
-          #       condition: C
-          #       data:
-          #         - refId: A
-          #           relativeTimeRange:
-          #             from: 60
-          #             to: 0
-          #           datasourceUid: PBFA97CFB590B2093
-          #           model:
-          #             datasource:
-          #                 type: prometheus
-          #                 uid: PBFA97CFB590B2093
-          #             editorMode: code
-          #             expr: ssv_node_status + 1
-          #             hide: false
-          #             intervalMs: 1000
-          #             legendFormat: __auto
-          #             maxDataPoints: 43200
-          #             range: true
-          #             refId: A
-          #         - refId: B
-          #           relativeTimeRange:
-          #             from: 60
-          #             to: 0
-          #           datasourceUid: __expr__
-          #           model:
-          #             conditions:
-          #                 - evaluator:
-          #                     params: []
-          #                     type: gt
-          #                   operator:
-          #                     type: and
-          #                   query:
-          #                     params:
-          #                         - B
-          #                   reducer:
-          #                     params: []
-          #                     type: last
-          #                   type: query
-          #             datasource:
-          #                 type: __expr__
-          #                 uid: __expr__
-          #             expression: A
-          #             hide: false
-          #             intervalMs: 1000
-          #             maxDataPoints: 43200
-          #             reducer: last
-          #             refId: B
-          #             type: reduce
-          #         - refId: C
-          #           relativeTimeRange:
-          #             from: 60
-          #             to: 0
-          #           datasourceUid: __expr__
-          #           model:
-          #             conditions:
-          #                 - evaluator:
-          #                     params:
-          #                         - 2
-          #                     type: lt
-          #                   operator:
-          #                     type: and
-          #                   query:
-          #                     params:
-          #                         - C
-          #                   reducer:
-          #                     params: []
-          #                     type: last
-          #                   type: query
-          #             datasource:
-          #                 type: __expr__
-          #                 uid: __expr__
-          #             expression: B
-          #             hide: false
-          #             intervalMs: 1000
-          #             maxDataPoints: 43200
-          #             refId: C
-          #             type: threshold
-          #       dashboardUid: SSV
-          #       panelId: 44
-          #       noDataState: NoData
-          #       execErrState: Error
-          #       for: 1m
-          #       annotations:
-          #         __dashboardUid__: SSV
-          #         __panelId__: "44"
-          #         summary: SSV_Node is Facing an Error
-          #       isPaused: false
-          #     - uid: b46aca79-171b-440b-a766-58aceb6bc3f8
-          #       title: SSV_Node_P2p
-          #       condition: C
-          #       data:
-          #         - refId: A
-          #           relativeTimeRange:
-          #             from: 60
-          #             to: 0
-          #           datasourceUid: PBFA97CFB590B2093
-          #           model:
-          #             datasource:
-          #                 type: prometheus
-          #                 uid: PBFA97CFB590B2093
-          #             editorMode: code
-          #             expr: ssv_p2p_all_connected_peers
-          #             hide: false
-          #             intervalMs: 1000
-          #             legendFormat: __auto
-          #             maxDataPoints: 43200
-          #             range: true
-          #             refId: A
-          #         - refId: B
-          #           relativeTimeRange:
-          #             from: 60
-          #             to: 0
-          #           datasourceUid: __expr__
-          #           model:
-          #             conditions:
-          #                 - evaluator:
-          #                     params: []
-          #                     type: gt
-          #                   operator:
-          #                     type: and
-          #                   query:
-          #                     params:
-          #                         - B
-          #                   reducer:
-          #                     params: []
-          #                     type: last
-          #                   type: query
-          #             datasource:
-          #                 type: __expr__
-          #                 uid: __expr__
-          #             expression: A
-          #             hide: false
-          #             intervalMs: 1000
-          #             maxDataPoints: 43200
-          #             reducer: last
-          #             refId: B
-          #             type: reduce
-          #         - refId: C
-          #           relativeTimeRange:
-          #             from: 60
-          #             to: 0
-          #           datasourceUid: __expr__
-          #           model:
-          #             conditions:
-          #                 - evaluator:
-          #                     params:
-          #                         - 5
-          #                     type: lt
-          #                   operator:
-          #                     type: and
-          #                   query:
-          #                     params:
-          #                         - C
-          #                   reducer:
-          #                     params: []
-          #                     type: last
-          #                   type: query
-          #             datasource:
-          #                 type: __expr__
-          #                 uid: __expr__
-          #             expression: B
-          #             hide: false
-          #             intervalMs: 1000
-          #             maxDataPoints: 43200
-          #             refId: C
-          #             type: threshold
-          #       dashboardUid: SSV
-          #       panelId: 52
-          #       noDataState: NoData
-          #       execErrState: Error
-          #       for: 1m
-          #       annotations:
-          #         __dashboardUid__: SSV
-          #         __panelId__: "52"
-          #         description: SSV operator peers
-          #         summary: SSV Operator node peers is {{ $values.B }} .
-          #       isPaused: false
           - orgId: 1
             name: Geth-EG
             folder: Geth-Alert
@@ -1076,368 +299,467 @@ data:
                   __panelId__: "110"
                   description: Latest Block
                   summary: Error in Block Syncing.
-                isPaused: false    
+                isPaused: false 
+          - orgId: 1
+          name: NE_EG
+          folder: Node-Exporter
+          interval: 1m
+          rules:
+            - uid: d75b0a4a-e4a2-4067-93de-588705c377d0
+              title: CPU Alert
+              condition: C
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: PBFA97CFB590B2093
+                  model:
+                    editorMode: code
+                    expr: 100 - (avg(rate(node_cpu_seconds_total{mode="idle"}[30s])) * 100)
+                    hide: false
+                    instant: true
+                    intervalMs: 1000
+                    legendFormat: CPU Usage
+                    maxDataPoints: 43200
+                    range: false
+                    refId: A
+                - refId: B
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: __expr__
+                  model:
+                    conditions:
+                        - evaluator:
+                            params: []
+                            type: gt
+                          operator:
+                            type: and
+                          query:
+                            params:
+                                - B
+                          reducer:
+                            params: []
+                            type: last
+                          type: query
+                    datasource:
+                        type: __expr__
+                        uid: __expr__
+                    expression: A
+                    hide: false
+                    intervalMs: 1000
+                    maxDataPoints: 43200
+                    reducer: last
+                    refId: B
+                    type: reduce
+                - refId: C
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: __expr__
+                  model:
+                    conditions:
+                        - evaluator:
+                            params:
+                                - 60
+                            type: gt
+                          operator:
+                            type: and
+                          query:
+                            params:
+                                - C
+                          reducer:
+                            params: []
+                            type: last
+                          type: query
+                    datasource:
+                        type: __expr__
+                        uid: __expr__
+                    expression: B
+                    hide: false
+                    intervalMs: 1000
+                    maxDataPoints: 43200
+                    refId: C
+                    type: threshold
+                - refId: D
+                  datasourceUid: __expr__
+                  model:
+                    conditions:
+                        - evaluator:
+                            params:
+                                - 85
+                                - 0
+                            type: gt
+                          operator:
+                            type: and
+                          query:
+                            params: []
+                          reducer:
+                            params: []
+                            type: avg
+                          type: query
+                    datasource:
+                        name: Expression
+                        type: __expr__
+                        uid: __expr__
+                    expression: B
+                    intervalMs: 1000
+                    maxDataPoints: 43200
+                    refId: D
+                    type: threshold
+              noDataState: NoData
+              execErrState: Error
+              for: 3m
+              annotations:
+                description: CPU Consumption is high
+                summary: CPU Consumption is {{ $values.B }}%
+              isPaused: false
+            - uid: e2a12076-713c-46a0-8c29-4bc8eb0ca686
+              title: RAM Alert
+              condition: C
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: PBFA97CFB590B2093
+                  model:
+                    editorMode: code
+                    expr: (1 - (node_memory_MemAvailable_bytes / (node_memory_MemTotal_bytes)))* 100
+                    hide: false
+                    instant: true
+                    intervalMs: 1000
+                    legendFormat: Ram Usage
+                    maxDataPoints: 43200
+                    range: false
+                    refId: A
+                - refId: B
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: __expr__
+                  model:
+                    conditions:
+                        - evaluator:
+                            params: []
+                            type: gt
+                          operator:
+                            type: and
+                          query:
+                            params:
+                                - B
+                          reducer:
+                            params: []
+                            type: last
+                          type: query
+                    datasource:
+                        type: __expr__
+                        uid: __expr__
+                    expression: A
+                    hide: false
+                    intervalMs: 1000
+                    maxDataPoints: 43200
+                    reducer: last
+                    refId: B
+                    type: reduce
+                - refId: C
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: __expr__
+                  model:
+                    conditions:
+                        - evaluator:
+                            params:
+                                - 65
+                            type: gt
+                          operator:
+                            type: and
+                          query:
+                            params:
+                                - C
+                          reducer:
+                            params: []
+                            type: last
+                          type: query
+                    datasource:
+                        type: __expr__
+                        uid: __expr__
+                    expression: B
+                    hide: false
+                    intervalMs: 1000
+                    maxDataPoints: 43200
+                    refId: C
+                    type: threshold
+                - refId: D
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: __expr__
+                  model:
+                    conditions:
+                        - evaluator:
+                            params:
+                                - 85
+                                - 0
+                            type: gt
+                          operator:
+                            type: and
+                          query:
+                            params: []
+                          reducer:
+                            params: []
+                            type: avg
+                          type: query
+                    datasource:
+                        name: Expression
+                        type: __expr__
+                        uid: __expr__
+                    expression: B
+                    intervalMs: 1000
+                    maxDataPoints: 43200
+                    refId: D
+                    type: threshold
+              noDataState: NoData
+              execErrState: Error
+              for: 3m
+              annotations:
+                description: RAM consumption is high.
+                summary: RAM consumption is {{ $values.B }}%
+              isPaused: false
+            - uid: cb3be301-a806-4394-8c7e-6bcfd536afab
+              title: Storage Alert
+              condition: C
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: PBFA97CFB590B2093
+                  model:
+                    editorMode: code
+                    expr: (node_filesystem_size_bytes{fstype=~"ext.*|xfs"}-node_filesystem_free_bytes{fstype=~"ext.*|xfs"})*100 /(node_filesystem_avail_bytes {fstype=~"ext.*|xfs"}+(node_filesystem_size_bytes{fstype=~"ext.*|xfs"}-node_filesystem_free_bytes{fstype=~"ext.*|xfs"}))
+                    hide: false
+                    instant: true
+                    intervalMs: 1000
+                    legendFormat: Storage Usage
+                    maxDataPoints: 43200
+                    range: false
+                    refId: A
+                - refId: B
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: __expr__
+                  model:
+                    conditions:
+                        - evaluator:
+                            params: []
+                            type: gt
+                          operator:
+                            type: and
+                          query:
+                            params:
+                                - B
+                          reducer:
+                            params: []
+                            type: last
+                          type: query
+                    datasource:
+                        type: __expr__
+                        uid: __expr__
+                    expression: A
+                    hide: false
+                    intervalMs: 1000
+                    maxDataPoints: 43200
+                    reducer: last
+                    refId: B
+                    type: reduce
+                - refId: C
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: __expr__
+                  model:
+                    conditions:
+                        - evaluator:
+                            params:
+                                - 65
+                            type: gt
+                          operator:
+                            type: and
+                          query:
+                            params:
+                                - C
+                          reducer:
+                            params: []
+                            type: last
+                          type: query
+                    datasource:
+                        type: __expr__
+                        uid: __expr__
+                    expression: B
+                    hide: false
+                    intervalMs: 1000
+                    maxDataPoints: 43200
+                    refId: C
+                    type: threshold
+                - refId: D
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: __expr__
+                  model:
+                    conditions:
+                        - evaluator:
+                            params:
+                                - 85
+                                - 0
+                            type: gt
+                          operator:
+                            type: and
+                          query:
+                            params: []
+                          reducer:
+                            params: []
+                            type: avg
+                          type: query
+                    datasource:
+                        name: Expression
+                        type: __expr__
+                        uid: __expr__
+                    expression: B
+                    intervalMs: 1000
+                    maxDataPoints: 43200
+                    refId: D
+                    type: threshold
+              noDataState: NoData
+              execErrState: Error
+              for: 3m
+              annotations:
+                description: Storage usage is more than 65%
+                summary: Stoarage use is {{ $values.B }}%
+              isPaused: false
+            - uid: f9d84816-f6eb-48a0-a252-d0e900ea7a7c
+              title: 'SWAP Memory Alert '
+              condition: C
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: PBFA97CFB590B2093
+                  model:
+                    editorMode: code
+                    expr: (1 - ((node_memory_SwapFree_bytes + 1)/ (node_memory_SwapTotal_bytes + 1))) * 100
+                    hide: false
+                    instant: true
+                    intervalMs: 1000
+                    legendFormat: Ram Usage
+                    maxDataPoints: 43200
+                    range: false
+                    refId: A
+                - refId: B
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: __expr__
+                  model:
+                    conditions:
+                        - evaluator:
+                            params: []
+                            type: gt
+                          operator:
+                            type: and
+                          query:
+                            params:
+                                - B
+                          reducer:
+                            params: []
+                            type: last
+                          type: query
+                    datasource:
+                        type: __expr__
+                        uid: __expr__
+                    expression: A
+                    hide: false
+                    intervalMs: 1000
+                    maxDataPoints: 43200
+                    reducer: last
+                    refId: B
+                    type: reduce
+                - refId: C
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: __expr__
+                  model:
+                    conditions:
+                        - evaluator:
+                            params:
+                                - 65
+                            type: gt
+                          operator:
+                            type: and
+                          query:
+                            params:
+                                - C
+                          reducer:
+                            params: []
+                            type: last
+                          type: query
+                    datasource:
+                        type: __expr__
+                        uid: __expr__
+                    expression: B
+                    hide: false
+                    intervalMs: 1000
+                    maxDataPoints: 43200
+                    refId: C
+                    type: threshold
+                - refId: D
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: __expr__
+                  model:
+                    conditions:
+                        - evaluator:
+                            params:
+                                - 85
+                                - 0
+                            type: gt
+                          operator:
+                            type: and
+                          query:
+                            params: []
+                          reducer:
+                            params: []
+                            type: avg
+                          type: query
+                    datasource:
+                        name: Expression
+                        type: __expr__
+                        uid: __expr__
+                    expression: B
+                    intervalMs: 1000
+                    maxDataPoints: 43200
+                    refId: D
+                    type: threshold
+              noDataState: NoData
+              execErrState: Error
+              for: 3m
+              annotations:
+                description: SWAP Memory consumption is high.
+                summary: SWAP Memory consumption is {{ $values.B }}%
+              isPaused: false
+   
           - orgId: 1
             name: Prysm-EG
             folder: Prysm-Alert
             interval: 1m
             rules:
-              # - uid: ba4e53c2-6578-4a8e-8fba-b1124a2a51da
-              #   title: Prysm-CPU
-              #   condition: C
-              #   data:
-              #     - refId: A
-              #       relativeTimeRange:
-              #         from: 120
-              #         to: 0
-              #       datasourceUid: PBFA97CFB590B2093
-              #       model:
-              #         datasource:
-              #             type: prometheus
-              #             uid: PBFA97CFB590B2093
-              #         editorMode: code
-              #         expr: (1 - avg(rate(node_cpu_seconds_total{instance=~"localhost:9100",mode="idle"}[2m])) by (instance))*100
-              #         hide: false
-              #         intervalMs: 1000
-              #         legendFormat: __auto
-              #         maxDataPoints: 43200
-              #         range: true
-              #         refId: A
-              #     - refId: B
-              #       relativeTimeRange:
-              #         from: 120
-              #         to: 0
-              #       datasourceUid: __expr__
-              #       model:
-              #         conditions:
-              #             - evaluator:
-              #                 params: []
-              #                 type: gt
-              #               operator:
-              #                 type: and
-              #               query:
-              #                 params:
-              #                     - B
-              #               reducer:
-              #                 params: []
-              #                 type: last
-              #               type: query
-              #         datasource:
-              #             type: __expr__
-              #             uid: __expr__
-              #         expression: A
-              #         hide: false
-              #         intervalMs: 1000
-              #         maxDataPoints: 43200
-              #         reducer: last
-              #         refId: B
-              #         type: reduce
-              #     - refId: C
-              #       relativeTimeRange:
-              #         from: 120
-              #         to: 0
-              #       datasourceUid: __expr__
-              #       model:
-              #         conditions:
-              #             - evaluator:
-              #                 params:
-              #                     - 39
-              #                 type: gt
-              #               operator:
-              #                 type: and
-              #               query:
-              #                 params:
-              #                     - C
-              #               reducer:
-              #                 params: []
-              #                 type: last
-              #               type: query
-              #         datasource:
-              #             type: __expr__
-              #             uid: __expr__
-              #         expression: B
-              #         hide: false
-              #         intervalMs: 1000
-              #         maxDataPoints: 43200
-              #         refId: C
-              #         type: threshold
-              #     - refId: D
-              #       relativeTimeRange:
-              #         from: 120
-              #         to: 0
-              #       datasourceUid: __expr__
-              #       model:
-              #         conditions:
-              #             - evaluator:
-              #                 params:
-              #                     - 69
-              #                     - 0
-              #                 type: gt
-              #               operator:
-              #                 type: and
-              #               query:
-              #                 params: []
-              #               reducer:
-              #                 params: []
-              #                 type: avg
-              #               type: query
-              #         datasource:
-              #             name: Expression
-              #             type: __expr__
-              #             uid: __expr__
-              #         expression: B
-              #         intervalMs: 1000
-              #         maxDataPoints: 43200
-              #         refId: D
-              #         type: threshold
-              #   dashboardUid: PrysmSSV
-              #   panelId: 191
-              #   noDataState: NoData
-              #   execErrState: Error
-              #   for: 1m
-              #   annotations:
-              #     __dashboardUid__: PrysmSSV
-              #     __panelId__: "191"
-              #     description: Prysm CPU consumption Alert
-              #     summary: Prysm CPU consumption is {{ $values.B }}
-              #   isPaused: false
-              # - uid: d5abe8e5-257d-405d-8450-ea59c6f05e15
-              #   title: Prysm-Memory
-              #   condition: D
-              #   data:
-              #     - refId: A
-              #       relativeTimeRange:
-              #         from: 300
-              #         to: 0
-              #       datasourceUid: PBFA97CFB590B2093
-              #       model:
-              #         datasource:
-              #             type: prometheus
-              #             uid: PBFA97CFB590B2093
-              #         editorMode: code
-              #         expr: (1 - (node_memory_MemAvailable_bytes{instance=~"localhost:9100"} / (node_memory_MemTotal_bytes{instance=~"localhost:9100"})))* 100
-              #         format: time_series
-              #         hide: false
-              #         interval: 30m
-              #         intervalFactor: 10
-              #         intervalMs: 15000
-              #         legendFormat: Used%
-              #         maxDataPoints: 43200
-              #         range: true
-              #         refId: A
-              #     - refId: B
-              #       relativeTimeRange:
-              #         from: 300
-              #         to: 0
-              #       datasourceUid: __expr__
-              #       model:
-              #         conditions:
-              #             - evaluator:
-              #                 params: []
-              #                 type: gt
-              #               operator:
-              #                 type: and
-              #               query:
-              #                 params:
-              #                     - I
-              #               reducer:
-              #                 params: []
-              #                 type: last
-              #               type: query
-              #         datasource:
-              #             type: __expr__
-              #             uid: __expr__
-              #         expression: A
-              #         hide: false
-              #         intervalMs: 1000
-              #         maxDataPoints: 43200
-              #         reducer: last
-              #         refId: B
-              #         type: reduce
-              #     - refId: C
-              #       relativeTimeRange:
-              #         from: 300
-              #         to: 0
-              #       datasourceUid: __expr__
-              #       model:
-              #         conditions:
-              #             - evaluator:
-              #                 params:
-              #                     - 60
-              #                 type: gt
-              #               operator:
-              #                 type: and
-              #               query:
-              #                 params:
-              #                     - J
-              #               reducer:
-              #                 params: []
-              #                 type: last
-              #               type: query
-              #         datasource:
-              #             type: __expr__
-              #             uid: __expr__
-              #         expression: B
-              #         hide: false
-              #         intervalMs: 1000
-              #         maxDataPoints: 43200
-              #         refId: C
-              #         type: threshold
-              #     - refId: D
-              #       datasourceUid: __expr__
-              #       model:
-              #         conditions:
-              #             - evaluator:
-              #                 params:
-              #                     - 80
-              #                     - 0
-              #                 type: gt
-              #               operator:
-              #                 type: and
-              #               query:
-              #                 params: []
-              #               reducer:
-              #                 params: []
-              #                 type: avg
-              #               type: query
-              #         datasource:
-              #             name: Expression
-              #             type: __expr__
-              #             uid: __expr__
-              #         expression: B
-              #         intervalMs: 1000
-              #         maxDataPoints: 43200
-              #         refId: D
-              #         type: threshold
-              #   dashboardUid: PrysmSSV
-              #   panelId: 156
-              #   noDataState: NoData
-              #   execErrState: Error
-              #   for: 1m
-              #   annotations:
-              #     __dashboardUid__: PrysmSSV
-              #     __panelId__: "156"
-              #     summary: RAM consumption is {{ $values.B }} %
-              #   isPaused: false
-              # - uid: da015fb0-c139-4ec4-b32b-644f99c4ae0d
-              #   title: Prysm-Storage
-              #   condition: C
-              #   data:
-              #     - refId: A
-              #       relativeTimeRange:
-              #         from: 300
-              #         to: 0
-              #       datasourceUid: PBFA97CFB590B2093
-              #       model:
-              #         datasource:
-              #             type: prometheus
-              #             uid: PBFA97CFB590B2093
-              #         editorMode: code
-              #         expr: (node_filesystem_size_bytes{instance=~'localhost:9100',fstype=~"ext.*|xfs",mountpoint !~".*pod.*"}-node_filesystem_free_bytes{instance=~'localhost:9100',fstype=~"ext.*|xfs",mountpoint !~".*pod.*"}) *100/(node_filesystem_avail_bytes {instance=~'localhost:9100',fstype=~"ext.*|xfs",mountpoint !~".*pod.*"}+(node_filesystem_size_bytes{instance=~'localhost:9100',fstype=~"ext.*|xfs",mountpoint !~".*pod.*"}-node_filesystem_free_bytes{instance=~'localhost:9100',fstype=~"ext.*|xfs",mountpoint !~".*pod.*"}))
-              #         hide: false
-              #         intervalMs: 1000
-              #         legendFormat: __auto
-              #         maxDataPoints: 43200
-              #         range: true
-              #         refId: A
-              #     - refId: B
-              #       relativeTimeRange:
-              #         from: 300
-              #         to: 0
-              #       datasourceUid: __expr__
-              #       model:
-              #         conditions:
-              #             - evaluator:
-              #                 params: []
-              #                 type: gt
-              #               operator:
-              #                 type: and
-              #               query:
-              #                 params:
-              #                     - B
-              #               reducer:
-              #                 params: []
-              #                 type: last
-              #               type: query
-              #         datasource:
-              #             type: __expr__
-              #             uid: __expr__
-              #         expression: A
-              #         hide: false
-              #         intervalMs: 1000
-              #         maxDataPoints: 43200
-              #         reducer: last
-              #         refId: B
-              #         type: reduce
-              #     - refId: C
-              #       relativeTimeRange:
-              #         from: 300
-              #         to: 0
-              #       datasourceUid: __expr__
-              #       model:
-              #         conditions:
-              #             - evaluator:
-              #                 params:
-              #                     - 70
-              #                 type: gt
-              #               operator:
-              #                 type: and
-              #               query:
-              #                 params:
-              #                     - C
-              #               reducer:
-              #                 params: []
-              #                 type: last
-              #               type: query
-              #         datasource:
-              #             type: __expr__
-              #             uid: __expr__
-              #         expression: B
-              #         hide: false
-              #         intervalMs: 1000
-              #         maxDataPoints: 43200
-              #         refId: C
-              #         type: threshold
-              #     - refId: D
-              #       relativeTimeRange:
-              #         from: 300
-              #         to: 0
-              #       datasourceUid: __expr__
-              #       model:
-              #         conditions:
-              #             - evaluator:
-              #                 params:
-              #                     - 80
-              #                     - 0
-              #                 type: gt
-              #               operator:
-              #                 type: and
-              #               query:
-              #                 params: []
-              #               reducer:
-              #                 params: []
-              #                 type: avg
-              #               type: query
-              #         datasource:
-              #             name: Expression
-              #             type: __expr__
-              #             uid: __expr__
-              #         expression: B
-              #         intervalMs: 1000
-              #         maxDataPoints: 43200
-              #         refId: D
-              #         type: threshold
-              #   dashboardUid: PrysmSSV
-              #   panelId: 174
-              #   noDataState: NoData
-              #   execErrState: Error
-              #   for: 1m
-              #   annotations:
-              #     __dashboardUid__: PrysmSSV
-              #     __panelId__: "174"
-              #     description: Disk space is used {{ $values.B }} %
-              #     summary: Disk Space Alert
-              #   isPaused: false
               - uid: f2ba845e-0621-4c9a-b05c-864afaaee0c9
                 title: Prysm-Peers
                 condition: C
