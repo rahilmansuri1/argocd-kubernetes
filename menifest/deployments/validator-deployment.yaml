@@ -53,4 +53,4 @@ spec:
           claimName: validator-pvc
       - name: wallet-password-volume
         secret:
-          secretName: password
+          secretName: wallet-password
