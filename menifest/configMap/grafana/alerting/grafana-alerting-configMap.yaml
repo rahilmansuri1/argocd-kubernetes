@@ -301,460 +301,459 @@ data:
                   summary: Error in Block Syncing.
                 isPaused: false 
           - orgId: 1
-          name: NE_EG
-          folder: Node-Exporter
-          interval: 1m
-          rules:
-            - uid: d75b0a4a-e4a2-4067-93de-588705c377d0
-              title: CPU Alert
-              condition: C
-              data:
-                - refId: A
-                  relativeTimeRange:
-                    from: 600
-                    to: 0
-                  datasourceUid: PBFA97CFB590B2093
-                  model:
-                    editorMode: code
-                    expr: 100 - (avg(rate(node_cpu_seconds_total{mode="idle"}[30s])) * 100)
-                    hide: false
-                    instant: true
-                    intervalMs: 1000
-                    legendFormat: CPU Usage
-                    maxDataPoints: 43200
-                    range: false
-                    refId: A
-                - refId: B
-                  relativeTimeRange:
-                    from: 600
-                    to: 0
-                  datasourceUid: __expr__
-                  model:
-                    conditions:
-                        - evaluator:
-                            params: []
-                            type: gt
-                          operator:
-                            type: and
-                          query:
-                            params:
-                                - B
-                          reducer:
-                            params: []
-                            type: last
-                          type: query
-                    datasource:
-                        type: __expr__
-                        uid: __expr__
-                    expression: A
-                    hide: false
-                    intervalMs: 1000
-                    maxDataPoints: 43200
-                    reducer: last
-                    refId: B
-                    type: reduce
-                - refId: C
-                  relativeTimeRange:
-                    from: 600
-                    to: 0
-                  datasourceUid: __expr__
-                  model:
-                    conditions:
-                        - evaluator:
-                            params:
-                                - 60
-                            type: gt
-                          operator:
-                            type: and
-                          query:
-                            params:
-                                - C
-                          reducer:
-                            params: []
-                            type: last
-                          type: query
-                    datasource:
-                        type: __expr__
-                        uid: __expr__
-                    expression: B
-                    hide: false
-                    intervalMs: 1000
-                    maxDataPoints: 43200
-                    refId: C
-                    type: threshold
-                - refId: D
-                  datasourceUid: __expr__
-                  model:
-                    conditions:
-                        - evaluator:
-                            params:
-                                - 85
-                                - 0
-                            type: gt
-                          operator:
-                            type: and
-                          query:
-                            params: []
-                          reducer:
-                            params: []
-                            type: avg
-                          type: query
-                    datasource:
-                        name: Expression
-                        type: __expr__
-                        uid: __expr__
-                    expression: B
-                    intervalMs: 1000
-                    maxDataPoints: 43200
-                    refId: D
-                    type: threshold
-              noDataState: NoData
-              execErrState: Error
-              for: 3m
-              annotations:
-                description: CPU Consumption is high
-                summary: CPU Consumption is {{ $values.B }}%
-              isPaused: false
-            - uid: e2a12076-713c-46a0-8c29-4bc8eb0ca686
-              title: RAM Alert
-              condition: C
-              data:
-                - refId: A
-                  relativeTimeRange:
-                    from: 600
-                    to: 0
-                  datasourceUid: PBFA97CFB590B2093
-                  model:
-                    editorMode: code
-                    expr: (1 - (node_memory_MemAvailable_bytes / (node_memory_MemTotal_bytes)))* 100
-                    hide: false
-                    instant: true
-                    intervalMs: 1000
-                    legendFormat: Ram Usage
-                    maxDataPoints: 43200
-                    range: false
-                    refId: A
-                - refId: B
-                  relativeTimeRange:
-                    from: 600
-                    to: 0
-                  datasourceUid: __expr__
-                  model:
-                    conditions:
-                        - evaluator:
-                            params: []
-                            type: gt
-                          operator:
-                            type: and
-                          query:
-                            params:
-                                - B
-                          reducer:
-                            params: []
-                            type: last
-                          type: query
-                    datasource:
-                        type: __expr__
-                        uid: __expr__
-                    expression: A
-                    hide: false
-                    intervalMs: 1000
-                    maxDataPoints: 43200
-                    reducer: last
-                    refId: B
-                    type: reduce
-                - refId: C
-                  relativeTimeRange:
-                    from: 600
-                    to: 0
-                  datasourceUid: __expr__
-                  model:
-                    conditions:
-                        - evaluator:
-                            params:
-                                - 65
-                            type: gt
-                          operator:
-                            type: and
-                          query:
-                            params:
-                                - C
-                          reducer:
-                            params: []
-                            type: last
-                          type: query
-                    datasource:
-                        type: __expr__
-                        uid: __expr__
-                    expression: B
-                    hide: false
-                    intervalMs: 1000
-                    maxDataPoints: 43200
-                    refId: C
-                    type: threshold
-                - refId: D
-                  relativeTimeRange:
-                    from: 600
-                    to: 0
-                  datasourceUid: __expr__
-                  model:
-                    conditions:
-                        - evaluator:
-                            params:
-                                - 85
-                                - 0
-                            type: gt
-                          operator:
-                            type: and
-                          query:
-                            params: []
-                          reducer:
-                            params: []
-                            type: avg
-                          type: query
-                    datasource:
-                        name: Expression
-                        type: __expr__
-                        uid: __expr__
-                    expression: B
-                    intervalMs: 1000
-                    maxDataPoints: 43200
-                    refId: D
-                    type: threshold
-              noDataState: NoData
-              execErrState: Error
-              for: 3m
-              annotations:
-                description: RAM consumption is high.
-                summary: RAM consumption is {{ $values.B }}%
-              isPaused: false
-            - uid: cb3be301-a806-4394-8c7e-6bcfd536afab
-              title: Storage Alert
-              condition: C
-              data:
-                - refId: A
-                  relativeTimeRange:
-                    from: 600
-                    to: 0
-                  datasourceUid: PBFA97CFB590B2093
-                  model:
-                    editorMode: code
-                    expr: (node_filesystem_size_bytes{fstype=~"ext.*|xfs"}-node_filesystem_free_bytes{fstype=~"ext.*|xfs"})*100 /(node_filesystem_avail_bytes {fstype=~"ext.*|xfs"}+(node_filesystem_size_bytes{fstype=~"ext.*|xfs"}-node_filesystem_free_bytes{fstype=~"ext.*|xfs"}))
-                    hide: false
-                    instant: true
-                    intervalMs: 1000
-                    legendFormat: Storage Usage
-                    maxDataPoints: 43200
-                    range: false
-                    refId: A
-                - refId: B
-                  relativeTimeRange:
-                    from: 600
-                    to: 0
-                  datasourceUid: __expr__
-                  model:
-                    conditions:
-                        - evaluator:
-                            params: []
-                            type: gt
-                          operator:
-                            type: and
-                          query:
-                            params:
-                                - B
-                          reducer:
-                            params: []
-                            type: last
-                          type: query
-                    datasource:
-                        type: __expr__
-                        uid: __expr__
-                    expression: A
-                    hide: false
-                    intervalMs: 1000
-                    maxDataPoints: 43200
-                    reducer: last
-                    refId: B
-                    type: reduce
-                - refId: C
-                  relativeTimeRange:
-                    from: 600
-                    to: 0
-                  datasourceUid: __expr__
-                  model:
-                    conditions:
-                        - evaluator:
-                            params:
-                                - 65
-                            type: gt
-                          operator:
-                            type: and
-                          query:
-                            params:
-                                - C
-                          reducer:
-                            params: []
-                            type: last
-                          type: query
-                    datasource:
-                        type: __expr__
-                        uid: __expr__
-                    expression: B
-                    hide: false
-                    intervalMs: 1000
-                    maxDataPoints: 43200
-                    refId: C
-                    type: threshold
-                - refId: D
-                  relativeTimeRange:
-                    from: 600
-                    to: 0
-                  datasourceUid: __expr__
-                  model:
-                    conditions:
-                        - evaluator:
-                            params:
-                                - 85
-                                - 0
-                            type: gt
-                          operator:
-                            type: and
-                          query:
-                            params: []
-                          reducer:
-                            params: []
-                            type: avg
-                          type: query
-                    datasource:
-                        name: Expression
-                        type: __expr__
-                        uid: __expr__
-                    expression: B
-                    intervalMs: 1000
-                    maxDataPoints: 43200
-                    refId: D
-                    type: threshold
-              noDataState: NoData
-              execErrState: Error
-              for: 3m
-              annotations:
-                description: Storage usage is more than 65%
-                summary: Stoarage use is {{ $values.B }}%
-              isPaused: false
-            - uid: f9d84816-f6eb-48a0-a252-d0e900ea7a7c
-              title: 'SWAP Memory Alert '
-              condition: C
-              data:
-                - refId: A
-                  relativeTimeRange:
-                    from: 600
-                    to: 0
-                  datasourceUid: PBFA97CFB590B2093
-                  model:
-                    editorMode: code
-                    expr: (1 - ((node_memory_SwapFree_bytes + 1)/ (node_memory_SwapTotal_bytes + 1))) * 100
-                    hide: false
-                    instant: true
-                    intervalMs: 1000
-                    legendFormat: Ram Usage
-                    maxDataPoints: 43200
-                    range: false
-                    refId: A
-                - refId: B
-                  relativeTimeRange:
-                    from: 600
-                    to: 0
-                  datasourceUid: __expr__
-                  model:
-                    conditions:
-                        - evaluator:
-                            params: []
-                            type: gt
-                          operator:
-                            type: and
-                          query:
-                            params:
-                                - B
-                          reducer:
-                            params: []
-                            type: last
-                          type: query
-                    datasource:
-                        type: __expr__
-                        uid: __expr__
-                    expression: A
-                    hide: false
-                    intervalMs: 1000
-                    maxDataPoints: 43200
-                    reducer: last
-                    refId: B
-                    type: reduce
-                - refId: C
-                  relativeTimeRange:
-                    from: 600
-                    to: 0
-                  datasourceUid: __expr__
-                  model:
-                    conditions:
-                        - evaluator:
-                            params:
-                                - 65
-                            type: gt
-                          operator:
-                            type: and
-                          query:
-                            params:
-                                - C
-                          reducer:
-                            params: []
-                            type: last
-                          type: query
-                    datasource:
-                        type: __expr__
-                        uid: __expr__
-                    expression: B
-                    hide: false
-                    intervalMs: 1000
-                    maxDataPoints: 43200
-                    refId: C
-                    type: threshold
-                - refId: D
-                  relativeTimeRange:
-                    from: 600
-                    to: 0
-                  datasourceUid: __expr__
-                  model:
-                    conditions:
-                        - evaluator:
-                            params:
-                                - 85
-                                - 0
-                            type: gt
-                          operator:
-                            type: and
-                          query:
-                            params: []
-                          reducer:
-                            params: []
-                            type: avg
-                          type: query
-                    datasource:
-                        name: Expression
-                        type: __expr__
-                        uid: __expr__
-                    expression: B
-                    intervalMs: 1000
-                    maxDataPoints: 43200
-                    refId: D
-                    type: threshold
-              noDataState: NoData
-              execErrState: Error
-              for: 3m
-              annotations:
-                description: SWAP Memory consumption is high.
-                summary: SWAP Memory consumption is {{ $values.B }}%
-              isPaused: false
-   
+            name: NE_EG
+            folder: Node-Exporter
+            interval: 1m
+            rules:
+              - uid: d75b0a4a-e4a2-4067-93de-588705c377d0
+                title: CPU Alert
+                condition: C
+                data:
+                  - refId: A
+                    relativeTimeRange:
+                      from: 600
+                      to: 0
+                    datasourceUid: PBFA97CFB590B2093
+                    model:
+                      editorMode: code
+                      expr: 100 - (avg(rate(node_cpu_seconds_total{mode="idle"}[30s])) * 100)
+                      hide: false
+                      instant: true
+                      intervalMs: 1000
+                      legendFormat: CPU Usage
+                      maxDataPoints: 43200
+                      range: false
+                      refId: A
+                  - refId: B
+                    relativeTimeRange:
+                      from: 600
+                      to: 0
+                    datasourceUid: __expr__
+                    model:
+                      conditions:
+                          - evaluator:
+                              params: []
+                              type: gt
+                            operator:
+                              type: and
+                            query:
+                              params:
+                                  - B
+                            reducer:
+                              params: []
+                              type: last
+                            type: query
+                      datasource:
+                          type: __expr__
+                          uid: __expr__
+                      expression: A
+                      hide: false
+                      intervalMs: 1000
+                      maxDataPoints: 43200
+                      reducer: last
+                      refId: B
+                      type: reduce
+                  - refId: C
+                    relativeTimeRange:
+                      from: 600
+                      to: 0
+                    datasourceUid: __expr__
+                    model:
+                      conditions:
+                          - evaluator:
+                              params:
+                                  - 60
+                              type: gt
+                            operator:
+                              type: and
+                            query:
+                              params:
+                                  - C
+                            reducer:
+                              params: []
+                              type: last
+                            type: query
+                      datasource:
+                          type: __expr__
+                          uid: __expr__
+                      expression: B
+                      hide: false
+                      intervalMs: 1000
+                      maxDataPoints: 43200
+                      refId: C
+                      type: threshold
+                  - refId: D
+                    datasourceUid: __expr__
+                    model:
+                      conditions:
+                          - evaluator:
+                              params:
+                                  - 85
+                                  - 0
+                              type: gt
+                            operator:
+                              type: and
+                            query:
+                              params: []
+                            reducer:
+                              params: []
+                              type: avg
+                            type: query
+                      datasource:
+                          name: Expression
+                          type: __expr__
+                          uid: __expr__
+                      expression: B
+                      intervalMs: 1000
+                      maxDataPoints: 43200
+                      refId: D
+                      type: threshold
+                noDataState: NoData
+                execErrState: Error
+                for: 3m
+                annotations:
+                  description: CPU Consumption is high
+                  summary: CPU Consumption is {{ $values.B }}%
+                isPaused: false
+              - uid: e2a12076-713c-46a0-8c29-4bc8eb0ca686
+                title: RAM Alert
+                condition: C
+                data:
+                  - refId: A
+                    relativeTimeRange:
+                      from: 600
+                      to: 0
+                    datasourceUid: PBFA97CFB590B2093
+                    model:
+                      editorMode: code
+                      expr: (1 - (node_memory_MemAvailable_bytes / (node_memory_MemTotal_bytes)))* 100
+                      hide: false
+                      instant: true
+                      intervalMs: 1000
+                      legendFormat: Ram Usage
+                      maxDataPoints: 43200
+                      range: false
+                      refId: A
+                  - refId: B
+                    relativeTimeRange:
+                      from: 600
+                      to: 0
+                    datasourceUid: __expr__
+                    model:
+                      conditions:
+                          - evaluator:
+                              params: []
+                              type: gt
+                            operator:
+                              type: and
+                            query:
+                              params:
+                                  - B
+                            reducer:
+                              params: []
+                              type: last
+                            type: query
+                      datasource:
+                          type: __expr__
+                          uid: __expr__
+                      expression: A
+                      hide: false
+                      intervalMs: 1000
+                      maxDataPoints: 43200
+                      reducer: last
+                      refId: B
+                      type: reduce
+                  - refId: C
+                    relativeTimeRange:
+                      from: 600
+                      to: 0
+                    datasourceUid: __expr__
+                    model:
+                      conditions:
+                          - evaluator:
+                              params:
+                                  - 65
+                              type: gt
+                            operator:
+                              type: and
+                            query:
+                              params:
+                                  - C
+                            reducer:
+                              params: []
+                              type: last
+                            type: query
+                      datasource:
+                          type: __expr__
+                          uid: __expr__
+                      expression: B
+                      hide: false
+                      intervalMs: 1000
+                      maxDataPoints: 43200
+                      refId: C
+                      type: threshold
+                  - refId: D
+                    relativeTimeRange:
+                      from: 600
+                      to: 0
+                    datasourceUid: __expr__
+                    model:
+                      conditions:
+                          - evaluator:
+                              params:
+                                  - 85
+                                  - 0
+                              type: gt
+                            operator:
+                              type: and
+                            query:
+                              params: []
+                            reducer:
+                              params: []
+                              type: avg
+                            type: query
+                      datasource:
+                          name: Expression
+                          type: __expr__
+                          uid: __expr__
+                      expression: B
+                      intervalMs: 1000
+                      maxDataPoints: 43200
+                      refId: D
+                      type: threshold
+                noDataState: NoData
+                execErrState: Error
+                for: 3m
+                annotations:
+                  description: RAM consumption is high.
+                  summary: RAM consumption is {{ $values.B }}%
+                isPaused: false
+              - uid: cb3be301-a806-4394-8c7e-6bcfd536afab
+                title: Storage Alert
+                condition: C
+                data:
+                  - refId: A
+                    relativeTimeRange:
+                      from: 600
+                      to: 0
+                    datasourceUid: PBFA97CFB590B2093
+                    model:
+                      editorMode: code
+                      expr: (node_filesystem_size_bytes{fstype=~"ext.*|xfs"}-node_filesystem_free_bytes{fstype=~"ext.*|xfs"})*100 /(node_filesystem_avail_bytes {fstype=~"ext.*|xfs"}+(node_filesystem_size_bytes{fstype=~"ext.*|xfs"}-node_filesystem_free_bytes{fstype=~"ext.*|xfs"}))
+                      hide: false
+                      instant: true
+                      intervalMs: 1000
+                      legendFormat: Storage Usage
+                      maxDataPoints: 43200
+                      range: false
+                      refId: A
+                  - refId: B
+                    relativeTimeRange:
+                      from: 600
+                      to: 0
+                    datasourceUid: __expr__
+                    model:
+                      conditions:
+                          - evaluator:
+                              params: []
+                              type: gt
+                            operator:
+                              type: and
+                            query:
+                              params:
+                                  - B
+                            reducer:
+                              params: []
+                              type: last
+                            type: query
+                      datasource:
+                          type: __expr__
+                          uid: __expr__
+                      expression: A
+                      hide: false
+                      intervalMs: 1000
+                      maxDataPoints: 43200
+                      reducer: last
+                      refId: B
+                      type: reduce
+                  - refId: C
+                    relativeTimeRange:
+                      from: 600
+                      to: 0
+                    datasourceUid: __expr__
+                    model:
+                      conditions:
+                          - evaluator:
+                              params:
+                                  - 65
+                              type: gt
+                            operator:
+                              type: and
+                            query:
+                              params:
+                                  - C
+                            reducer:
+                              params: []
+                              type: last
+                            type: query
+                      datasource:
+                          type: __expr__
+                          uid: __expr__
+                      expression: B
+                      hide: false
+                      intervalMs: 1000
+                      maxDataPoints: 43200
+                      refId: C
+                      type: threshold
+                  - refId: D
+                    relativeTimeRange:
+                      from: 600
+                      to: 0
+                    datasourceUid: __expr__
+                    model:
+                      conditions:
+                          - evaluator:
+                              params:
+                                  - 85
+                                  - 0
+                              type: gt
+                            operator:
+                              type: and
+                            query:
+                              params: []
+                            reducer:
+                              params: []
+                              type: avg
+                            type: query
+                      datasource:
+                          name: Expression
+                          type: __expr__
+                          uid: __expr__
+                      expression: B
+                      intervalMs: 1000
+                      maxDataPoints: 43200
+                      refId: D
+                      type: threshold
+                noDataState: NoData
+                execErrState: Error
+                for: 3m
+                annotations:
+                  description: Storage usage is more than 65%
+                  summary: Stoarage use is {{ $values.B }}%
+                isPaused: false
+              - uid: f9d84816-f6eb-48a0-a252-d0e900ea7a7c
+                title: 'SWAP Memory Alert '
+                condition: C
+                data:
+                  - refId: A
+                    relativeTimeRange:
+                      from: 600
+                      to: 0
+                    datasourceUid: PBFA97CFB590B2093
+                    model:
+                      editorMode: code
+                      expr: (1 - ((node_memory_SwapFree_bytes + 1)/ (node_memory_SwapTotal_bytes + 1))) * 100
+                      hide: false
+                      instant: true
+                      intervalMs: 1000
+                      legendFormat: Ram Usage
+                      maxDataPoints: 43200
+                      range: false
+                      refId: A
+                  - refId: B
+                    relativeTimeRange:
+                      from: 600
+                      to: 0
+                    datasourceUid: __expr__
+                    model:
+                      conditions:
+                          - evaluator:
+                              params: []
+                              type: gt
+                            operator:
+                              type: and
+                            query:
+                              params:
+                                  - B
+                            reducer:
+                              params: []
+                              type: last
+                            type: query
+                      datasource:
+                          type: __expr__
+                          uid: __expr__
+                      expression: A
+                      hide: false
+                      intervalMs: 1000
+                      maxDataPoints: 43200
+                      reducer: last
+                      refId: B
+                      type: reduce
+                  - refId: C
+                    relativeTimeRange:
+                      from: 600
+                      to: 0
+                    datasourceUid: __expr__
+                    model:
+                      conditions:
+                          - evaluator:
+                              params:
+                                  - 65
+                              type: gt
+                            operator:
+                              type: and
+                            query:
+                              params:
+                                  - C
+                            reducer:
+                              params: []
+                              type: last
+                            type: query
+                      datasource:
+                          type: __expr__
+                          uid: __expr__
+                      expression: B
+                      hide: false
+                      intervalMs: 1000
+                      maxDataPoints: 43200
+                      refId: C
+                      type: threshold
+                  - refId: D
+                    relativeTimeRange:
+                      from: 600
+                      to: 0
+                    datasourceUid: __expr__
+                    model:
+                      conditions:
+                          - evaluator:
+                              params:
+                                  - 85
+                                  - 0
+                              type: gt
+                            operator:
+                              type: and
+                            query:
+                              params: []
+                            reducer:
+                              params: []
+                              type: avg
+                            type: query
+                      datasource:
+                          name: Expression
+                          type: __expr__
+                          uid: __expr__
+                      expression: B
+                      intervalMs: 1000
+                      maxDataPoints: 43200
+                      refId: D
+                      type: threshold
+                noDataState: NoData
+                execErrState: Error
+                for: 3m
+                annotations:
+                  description: SWAP Memory consumption is high.
+                  summary: SWAP Memory consumption is {{ $values.B }}%
+                isPaused: false   
           - orgId: 1
             name: Prysm-EG
             folder: Prysm-Alert
