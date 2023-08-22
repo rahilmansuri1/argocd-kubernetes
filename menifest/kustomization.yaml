@@ -48,7 +48,8 @@ resources:
 #--------------------------SECRETS----------------------------------------------#
   - secrets/aws-credintial-secret.yaml
   # - secrets/ssvOperatorPrivateKey-secret.yaml
-  - secrets/validator-wallet-password.yaml
+  # - secrets/validator-wallet-password.yaml
+  - secrets/wallet-password-secret.yaml
 
 
 #--------------------------SERVICE----------------------------------------------#
