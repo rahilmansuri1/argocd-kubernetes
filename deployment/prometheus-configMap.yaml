@@ -26,3 +26,6 @@ data:
         metrics_path: /metrics
         static_configs:
           - targets: ['ssv-node-service:15000']
+      - job_name: 'validator'
+        static_configs:
+          - targets: ['validator-service:8686']
