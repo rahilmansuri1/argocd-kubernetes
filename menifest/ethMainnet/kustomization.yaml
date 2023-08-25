@@ -9,9 +9,10 @@ resources:
 #   - configMap/grafana/dashboards/prysm-dashboard-grafana.yaml
 #   - configMap/grafana/dashboards/ssv-dashboard-grafana.yaml
 #   - configMap/grafana/datasources/grafana-datasource-provisioning.yaml
-    - jwt-configMap.yaml
+
 #   - configMap/prometheus/prometheus-configMap.yaml
-    - ../../configMap/ssv/ssv-configMap.yaml
+    - jwt-configMap.yaml
+    - ../../../configMap/ssv/ssv-configMap.yaml
 
 
 # #--------------------------DEPLOYMENT---------------------------------------------#
