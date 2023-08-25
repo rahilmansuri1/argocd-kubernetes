@@ -11,7 +11,7 @@ resources:
 #   - configMap/grafana/datasources/grafana-datasource-provisioning.yaml
     - jwt-configMap.yaml
 #   - configMap/prometheus/prometheus-configMap.yaml
-    # - ../configMap/ssv/ssv-configMap.yaml
+    - ../configMap/ssv/ssv-configMap.yaml
 
 
 # #--------------------------DEPLOYMENT---------------------------------------------#
