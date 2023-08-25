@@ -10,6 +10,13 @@ spec:
     repoURL: https://github.com/rahilmansuri1/argocd-kubernetes.git
     targetRevision: secret
     path: deployment
+    directory:
+      jsonnet:
+        extVars:
+          - name: NAME
+            value: us-east-1 
+            code: true
+  sources: []
   destination: 
     server: https://kubernetes.default.svc
     namespace: ethereum
