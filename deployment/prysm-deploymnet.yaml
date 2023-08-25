@@ -1,50 +1,50 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: prysm-deployment
-  labels:
-    app: prysm
-spec:
-  selector:
-    matchLabels:
-      app: prysm
-  strategy:
-    type: Recreate
-  # replicas: 0
-  template:
-    metadata:
-      labels:
-        app: prysm
-    spec:
-      containers:
-      - name: prysm
-        image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
-        volumeMounts:
-        - name: prysm
-          mountPath: /home/eth_storage
-        ports:
-        - containerPort: 12000
-          protocol: UDP
-        - containerPort: 13000
-          protocol: TCP
-        - containerPort: 4000
-          protocol: TCP
-        - containerPort: 3500
-          protocol: TCP
-        args:
-        - --accept-terms-of-use
-        - --datadir=/home/eth_storage
-        - --rpc-host=0.0.0.0
-        - --goerli
-        - --grpc-gateway-host=0.0.0.0
-        - --grpc-gateway-port=3500
-        - --checkpoint-sync-url=https://goerli.beaconstate.info/
-        - --genesis-beacon-api-url=https://goerli.beaconstate.info/
-        - --execution-endpoint=http://geth-service:8551
-        - --jwt-secret=/home/eth_storage/jwtsecret
-        - --suggested-fee-recipient=0xdec1413daA0f91C692DC021911b490a06bb94F7a
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: prysm-deployment
+#   labels:
+#     app: prysm
+# spec:
+#   selector:
+#     matchLabels:
+#       app: prysm
+#   strategy:
+#     type: Recreate
+#   # replicas: 0
+#   template:
+#     metadata:
+#       labels:
+#         app: prysm
+#     spec:
+#       containers:
+#       - name: prysm
+#         image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
+#         volumeMounts:
+#         - name: prysm
+#           mountPath: /home/eth_storage
+#         ports:
+#         - containerPort: 12000
+#           protocol: UDP
+#         - containerPort: 13000
+#           protocol: TCP
+#         - containerPort: 4000
+#           protocol: TCP
+#         - containerPort: 3500
+#           protocol: TCP
+#         args:
+#         - --accept-terms-of-use
+#         - --datadir=/home/eth_storage
+#         - --rpc-host=0.0.0.0
+#         - --goerli
+#         - --grpc-gateway-host=0.0.0.0
+#         - --grpc-gateway-port=3500
+#         - --checkpoint-sync-url=https://goerli.beaconstate.info/
+#         - --genesis-beacon-api-url=https://goerli.beaconstate.info/
+#         - --execution-endpoint=http://geth-service:8551
+#         - --jwt-secret=/home/eth_storage/jwtsecret
+#         - --suggested-fee-recipient=0xdec1413daA0f91C692DC021911b490a06bb94F7a
 
-      volumes:
-      - name: prysm
-        hostPath:
-          path: /home/eth_storage
+#       volumes:
+#       - name: prysm
+#         hostPath:
+#           path: /home/eth_storage

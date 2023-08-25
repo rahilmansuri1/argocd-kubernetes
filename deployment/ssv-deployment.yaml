@@ -1,63 +1,63 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: ssv-node-deployment
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: ssv-node
-  template:
-    metadata:
-      labels:
-        app: ssv-node
-    spec:
-      initContainers:
-      - name: prepare-config
-        image: busybox
-        command: ["/bin/sh", "-c"]
-        args:
-        - |
-          cp /etc/config-orig/config.yaml /etc/config/config.yaml && sed -i 's#OperatorPrivateKey: OperatorPrivateKey#OperatorPrivateKey: '"$OPERATOR_PRIVATE_KEY"'#' /etc/config/config.yaml
-        env:
-        - name: OPERATOR_PRIVATE_KEY
-          valueFrom:
-            secretKeyRef:
-              name: app-secret
-              key: operatorPrivateKey
-        volumeMounts:
-        - name: config-volume
-          mountPath: /etc/config
-        - name: config-orig-volume
-          mountPath: /etc/config-orig
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: ssv-node-deployment
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: ssv-node
+#   template:
+#     metadata:
+#       labels:
+#         app: ssv-node
+#     spec:
+#       initContainers:
+#       - name: prepare-config
+#         image: busybox
+#         command: ["/bin/sh", "-c"]
+#         args:
+#         - |
+#           cp /etc/config-orig/config.yaml /etc/config/config.yaml && sed -i 's#OperatorPrivateKey: OperatorPrivateKey#OperatorPrivateKey: '"$OPERATOR_PRIVATE_KEY"'#' /etc/config/config.yaml
+#         env:
+#         - name: OPERATOR_PRIVATE_KEY
+#           valueFrom:
+#             secretKeyRef:
+#               name: app-secret
+#               key: operatorPrivateKey
+#         volumeMounts:
+#         - name: config-volume
+#           mountPath: /etc/config
+#         - name: config-orig-volume
+#           mountPath: /etc/config-orig
 
-      containers:
-      - name: ssv-node
-        image: bloxstaking/ssv-node:latest
-        args:
-        - make
-        - BUILD_PATH=/go/bin/ssvnode
-        - start-node
-        env:
-        - name: CONFIG_PATH
-          value: /etc/config/config.yaml
-        ports:
-        - containerPort: 13001
-          protocol: TCP
-        - containerPort: 12001
-          protocol: UDP
-        volumeMounts:
-        - name: config-volume
-          mountPath: /etc/config
-        - name: data-volume
-          mountPath: /data
+#       containers:
+#       - name: ssv-node
+#         image: bloxstaking/ssv-node:latest
+#         args:
+#         - make
+#         - BUILD_PATH=/go/bin/ssvnode
+#         - start-node
+#         env:
+#         - name: CONFIG_PATH
+#           value: /etc/config/config.yaml
+#         ports:
+#         - containerPort: 13001
+#           protocol: TCP
+#         - containerPort: 12001
+#           protocol: UDP
+#         volumeMounts:
+#         - name: config-volume
+#           mountPath: /etc/config
+#         - name: data-volume
+#           mountPath: /data
 
-      volumes:
-      - name: config-orig-volume
-        configMap:
-          name: ssv-config
-      - name: config-volume
-        emptyDir: {}
-      - name: data-volume
-        hostPath:
-          path: /home/eth_storage/
+#       volumes:
+#       - name: config-orig-volume
+#         configMap:
+#           name: ssv-config
+#       - name: config-volume
+#         emptyDir: {}
+#       - name: data-volume
+#         hostPath:
+#           path: /home/eth_storage/
